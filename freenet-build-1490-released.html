@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/8d8673608f3f58fa65f91f052db6b152_bebas.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/7192e6c3efd5cad0699612ddead007bc_ptsans.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/d7cf95772fa607c4ca69f1b345c1a07e_social.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/99c410000d582bf13683abc3525fd2bb_toc.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/253e26978d0d20f538fa6724a05a7bd3_content.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/c9199870619f96b70c580616bb370d74_donate.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/98a94826af525d8722e012305a68f7ec_menu.css">
+          <title>Freenet Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="https://freenetproject.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Freenet Project Full Atom Feed" />
+	<link rel="alternate" hreflang="en" href="https://freenetproject.org/freenet-build-1490-released.html" />
+	<link rel="alternate" hreflang="fr" href="https://freenetproject.org/fr/freenet-build-1490-released.html" />
+	<link rel="alternate" hreflang="ru" href="https://freenetproject.org/ru/freenet-build-1490-released.html" />
+	<link rel="alternate" hreflang="x-default" href="https://freenetproject.org/freenet-build-1490-released.html" />
+	<link rel="canonical" href="https://freenetproject.org/freenet-build-1490-released.html" />
+
+
+
+
+      <meta property="og:title" content="Freenet Project" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://freenetproject.org" />
+      <meta property="og:image" content="https://freenetproject.org/" />
+      <meta property="og:image:secure_url" content="https://freenetproject.org/theme/images/logo-blue.png" />
+      <meta property="og:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Freenet Project" />
+      <meta name="twitter:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:image" content="https://freenetproject.org/theme/images/logo-blue.png" />
+</head>
+
+<body id="index" class="home">
+	<div>
+        <nav id="menu">
+	<a href="https://freenetproject.org/">Hyphanet</a>
+          <a  href="https://freenetproject.org/pages/about.html">About</a>
+          <a  href="https://freenetproject.org/pages/volunteer.html">Volunteer</a>
+          <a  href="https://freenetproject.org/pages/documentation.html">Documentation</a>
+          <a  href="https://freenetproject.org/pages/download.html">Download</a>
+          <a  href="https://freenetproject.org/pages/help.html">Help</a>
+        </nav><!-- /#menu -->
+
+	<aside class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</aside>
+
+	<nav id="language">
+		<span>Language</span>
+				<a href="https://freenetproject.org/fr/freenet-build-1490-released.html">fr</a>
+				<a href="https://freenetproject.org/ru/freenet-build-1490-released.html">ru</a>
+	</nav>
+
+	</div>
+	<main>
+
+        <header id="banner" class="body">
+                <h1>Freenet build 1490 released</h1>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <div class="post-info">
+    <time class="published" datetime="2021-04-01T00:00:00+02:00">
+      Thu 01 April 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://freenetproject.org/author/freenet-project-inc.html">Freenet Project Inc.</a>
+    </address>
+  </div><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Freenet 0.7.5 build 1490 codename “pitch black streaming” is now available.</p>
+<blockquote>
+<p><strong><a href="pages/download.html">Download Freenet</a></strong></p>
+</blockquote>
+<p>Freenet 0.7.5 build 1490 is now available.</p>
+<p>This release provides three different changes:</p>
+<ul>
+<li>streaming in the browser,</li>
+<li>mitigating the pitch black attack, and</li>
+<li>providing the windows-installer from the node again.</li>
+</ul>
+<p>For <strong>streaming</strong>, it builds on the m3u-filter to provide
+direct in-browser streaming. Currently
+it works with audio (mp3 and ogg vorbis)
+and video (ogg theora) in sufficient quality for
+music playlists and specially crafted video-streams.</p>
+<p>With this change, adding a media-tag that references an m3u-list like</p>
+<pre><code>&lt;audio src="stream.m3u" controls="controls"&gt;
+&lt;a href="stream.m3u"&gt;stream.m3u&lt;/a&gt;
+&lt;/audio&gt;
+</code></pre>
+<p>or</p>
+<pre><code>&lt;video src="stream.m3u" controls="controls"&gt;
+&lt;a href="stream.m3u"&gt;stream.m3u&lt;/a&gt;, starting with &lt;a href="sff-001.ogv"&gt;sff-001.ogv&lt;/a&gt;.
+    Putting the first video here causes freesitemgr to more likely
+    put the first video into the container, giving faster initial startup.
+&lt;/video&gt;
+</code></pre>
+<p>gives you a media-tag that plays the m3u-playlist.
+In Sharesites you need to add at least one space before the tag.</p>
+<p>If you want to stream via Freenet yourself, you’ll find help in
+a <a href="https://www.draketo.de/software/stream-over-freenet.html">thirdparty howto</a>.</p>
+<p>There are three example sites:</p>
+<ul>
+<li>Audio-Playlist: USK@1wpsnrzb9fiFmmq6OozoZ0Mnk376AlizUKjKPh3TXwM,CwfRO8X0xaCUzH28eoHigxUV-5TkRV8hCoQdO2kmsQM,AQACAAE/streaming-over-fproxy/3/</li>
+<li>Streaming Video: USK@UGh1rxaHczJVr4k4LwxWrxFBc-Dt5P0F3IuPONpp8ZQ,klWF5g9B2PLst8tRO8c9tzk6XvisGynFVJRzM8-9718,AQACAAE/stream-36c3-sff/3/</li>
+<li>Radio Interview: USK@4DQ15JpGlVGDdyXvQE3Egz7SLK2TzMAUmp~aptnwyt4,ljFASreV8AHaQhscfrNLuVyl3qksltgP9sndtLuUHB8,AQACAAE/stream-radiocc-freenet/1/</li>
+</ul>
+<p>This follows an old idea to enhance freesites with strictly checked interactivity,
+similar to userscripts but without the security implications of adding a script
+that might have a very different threat model than Freenet itself.</p>
+<p>Also this release ships a <strong>mitigation for the pitch black attack</strong>. 
+For details see <a href="https://www.mail-archive.com/devl@freenetproject.org/msg55182.html">https://www.mail-archive.com/devl@freenetproject.org/msg55182.html</a></p>
+<p>Mitigating the pitch black attack is supported by NLnet
+as part of the NGI0 PET Fund.
+For details see <a href="https://nlnet.nl/project/Freenet-Routing/">https://nlnet.nl/project/Freenet-Routing/</a>
+Thank you!</p>
+<p>There are still more tests needed to ensure that the change suffices
+to resolve the main objection that existed among people well-versed
+in the technical background of Freenet, GNUnet, and others
+against using the friend-to-friend mode of Freenet since 2007.</p>
+<p>It used to be far too easy to break a pure friend-to-friend net
+(all nodes using high-security mode). This should be resolved now.</p>
+<p>And finally the <strong>UOM transfer max sizes were tripled</strong>,
+so the windows-installer provided by Freenet nodes gets updated again,
+and the annoying warning about freenet-latest-installer-windows.exe
+during install and update disappears.</p>
+<blockquote>
+<p><strong><a href="pages/download.html">Download Freenet</a></strong></p>
+</blockquote>
+<p>Thank you for using Freenet!</p>
+<ul>
+<li>Arne Babenhauserheide</li>
+</ul>
+  </div><!-- /.entry-content -->
+  <a href="archives.html">News Archives</a>
+</section>
+	</main>
+
+<footer>
+	<header>
+	<h2>Hyphanet</h2>
+	<p>Navigate with Freedom</p>
+	</header>
+
+	<ul class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</ul>
+	<!--
+	<form id="MLform" method="POST" action="https://ml.freenetproject.org/v1/">
+		<input name="email" id="email" required="" type="email"></input>
+		<input name="action" value="subscription" type="hidden"></input>
+		<input name="list" value="announce" type="hidden"></input>
+
+		<button id="submit">Submit</button>
+	</form>
+	-->
+
+	<div id="contact">
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@sserp</span></br>
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@troppus</span></br>
+		<span>IRC: <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet">#freenet on irc.libera.chat</a></span></br>
+	</div>
+
+	<p id="copyright">&copy; Copyright The Hyphanet Project Inc. and contributors | Licensed under the <a href="https://www.gnu.org/licenses/fdl-1.3.html">GDFL</a></p>
+</footer></body>
+</html>

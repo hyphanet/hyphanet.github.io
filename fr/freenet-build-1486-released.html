@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/8d8673608f3f58fa65f91f052db6b152_bebas.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/7192e6c3efd5cad0699612ddead007bc_ptsans.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/d7cf95772fa607c4ca69f1b345c1a07e_social.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/99c410000d582bf13683abc3525fd2bb_toc.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/253e26978d0d20f538fa6724a05a7bd3_content.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/c9199870619f96b70c580616bb370d74_donate.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/98a94826af525d8722e012305a68f7ec_menu.css">
+          <title>Freenet Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="https://freenetproject.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Freenet Project Full Atom Feed" />
+	<link rel="alternate" hreflang="fr" href="https://freenetproject.org/fr/freenet-build-1486-released.html" />
+	<link rel="alternate" hreflang="en" href="https://freenetproject.org/freenet-build-1486-released.html" />
+	<link rel="alternate" hreflang="ru" href="https://freenetproject.org/ru/freenet-build-1486-released.html" />
+	<link rel="alternate" hreflang="x-default" href="https://freenetproject.org/freenet-build-1486-released.html" />
+	<link rel="canonical" href="https://freenetproject.org/fr/freenet-build-1486-released.html" />
+
+
+
+
+      <meta property="og:title" content="Freenet Project" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://freenetproject.org/fr" />
+      <meta property="og:image" content="https://freenetproject.org/fr/" />
+      <meta property="og:image:secure_url" content="https://freenetproject.org/fr/theme/images/logo-blue.png" />
+      <meta property="og:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Freenet Project" />
+      <meta name="twitter:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:image" content="https://freenetproject.org/fr/theme/images/logo-blue.png" />
+</head>
+
+<body id="index" class="home">
+	<div>
+        <nav id="menu">
+	<a href="https://freenetproject.org/fr/">Hyphanet</a>
+          <a  href="https://freenetproject.org/fr/pages/about.html">About</a>
+          <a  href="https://freenetproject.org/fr/pages/volunteer.html">Volunteer</a>
+          <a  href="https://freenetproject.org/fr/pages/documentation.html">Documentation</a>
+          <a  href="https://freenetproject.org/fr/pages/download.html">Download</a>
+          <a  href="https://freenetproject.org/fr/pages/help.html">Help</a>
+        </nav><!-- /#menu -->
+
+	<aside class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</aside>
+
+	<nav id="language">
+		<span>Language</span>
+				<a href="https://freenetproject.org/freenet-build-1486-released.html">en</a>
+				<a href="https://freenetproject.org/ru/freenet-build-1486-released.html">ru</a>
+	</nav>
+
+	</div>
+	<main>
+
+        <header id="banner" class="body">
+                <h1>Freenet build 1486 released</h1>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <div class="post-info">
+    <time class="published" datetime="2020-08-06T00:00:00+02:00">
+      Thu 06 August 2020
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://freenetproject.org/fr/author/freenet-project-inc.html">Freenet Project Inc.</a>
+    </address>
+  </div><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Freenet 0.7.5 build 1486 is now available.</p>
+<p>This is an emergency release which updates JNA to version 4.5.2 to
+prevent Windows nodes from breaking when Java is updated.</p>
+<p>Since we’re releasing from next, this release contains a number of
+further improvements we had already prepared:</p>
+<p>The first time wizard now warns users on first run to disable
+thirdparty IMEs (input method editors). There are reports that
+some of those IMEs send all keystrokes to their owners.</p>
+<p>Alex Williams changed the bandwidth allocation to give more bandwidth
+to friend-to-friend connections than to opennet connections.
+Friend-to-friend connections (Darknet-mode) are the only way to build
+a Sybil-resistant network. Please invite people you’ve known for years
+long to join you in Freenet and connect to them as Friends.</p>
+<p>Oleh from Redwerk improved the styles of our main theme (Winterfacey).
+It now works much better for small devices like phones. Also Freenet
+will offer a connection speed upgrade when increased speed is
+detected.</p>
+<p>On the technical side, operhiem1 and nextgens got us a new jarsigner
+certificate which should remove some ugly warnings during
+installation, and thanks to Bombe our SSK and USK key validation is
+now stricter, and our tests now use JUnit 4. And we increased the max
+size for passthrough, so our Windows installer should spread over <a href="https://github.com/freenet/wiki/wiki/Update-Over-Mandatory">UOM</a>
+again.</p>
+<p>Finally, outside the direct release, but significant: desyncr ported
+Freenet to Android! The new <a href="https://github.com/freenet-mobile/app">Freenet
+Mobile</a> is optimized to preserve
+bandwidth and battery power in phones. Find out how to test it <a href="https://www.reddit.com/r/Freenet/comments/i21dca/freenet_mobile_01_beta">on
+reddit</a>.</p>
+<p>Thank you for using Freenet!</p>
+<p>For additional details see the <a href="https://github.com/freenet/fred/releases/tag/build01486">release tag for 1486</a>.</p>
+<p>You can download this release as usual from the <a href="pages/download.html">download page</a>,
+or if you are already using Freenet, simply let your freenet node
+update itself over Freenet.</p>
+<p>Thank you to all involved!</p>
+<ul>
+<li>Arne Babenhauserheide</li>
+</ul>
+  </div><!-- /.entry-content -->
+  <a href="archives.html">News Archives</a>
+</section>
+	</main>
+
+<footer>
+	<header>
+	<h2>Hyphanet</h2>
+	<p>Navigate with Freedom</p>
+	</header>
+
+	<ul class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</ul>
+	<!--
+	<form id="MLform" method="POST" action="https://ml.freenetproject.org/v1/">
+		<input name="email" id="email" required="" type="email"></input>
+		<input name="action" value="subscription" type="hidden"></input>
+		<input name="list" value="announce" type="hidden"></input>
+
+		<button id="submit">Submit</button>
+	</form>
+	-->
+
+	<div id="contact">
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@sserp</span></br>
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@troppus</span></br>
+		<span>IRC: <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet">#freenet on irc.libera.chat</a></span></br>
+	</div>
+
+	<p id="copyright">&copy; Copyright The Hyphanet Project Inc. and contributors | Licensed under the <a href="https://www.gnu.org/licenses/fdl-1.3.html">GDFL</a></p>
+</footer></body>
+</html>

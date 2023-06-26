@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/8d8673608f3f58fa65f91f052db6b152_bebas.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/7192e6c3efd5cad0699612ddead007bc_ptsans.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/d7cf95772fa607c4ca69f1b345c1a07e_social.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/99c410000d582bf13683abc3525fd2bb_toc.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/253e26978d0d20f538fa6724a05a7bd3_content.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/c9199870619f96b70c580616bb370d74_donate.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/98a94826af525d8722e012305a68f7ec_menu.css">
+          <title>Freenet Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="https://freenetproject.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Freenet Project Full Atom Feed" />
+	<link rel="alternate" hreflang="ru" href="https://freenetproject.org/ru/freenet-075-build-1472-released.html" />
+	<link rel="alternate" hreflang="en" href="https://freenetproject.org/freenet-075-build-1472-released.html" />
+	<link rel="alternate" hreflang="fr" href="https://freenetproject.org/fr/freenet-075-build-1472-released.html" />
+	<link rel="alternate" hreflang="x-default" href="https://freenetproject.org/freenet-075-build-1472-released.html" />
+	<link rel="canonical" href="https://freenetproject.org/ru/freenet-075-build-1472-released.html" />
+
+
+
+
+      <meta property="og:title" content="Freenet Project" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://freenetproject.org/ru" />
+      <meta property="og:image" content="https://freenetproject.org/ru/" />
+      <meta property="og:image:secure_url" content="https://freenetproject.org/ru/theme/images/logo-blue.png" />
+      <meta property="og:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Freenet Project" />
+      <meta name="twitter:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:image" content="https://freenetproject.org/ru/theme/images/logo-blue.png" />
+</head>
+
+<body id="index" class="home">
+	<div>
+        <nav id="menu">
+	<a href="https://freenetproject.org/ru/">Hyphanet</a>
+          <a  href="https://freenetproject.org/ru/pages/about.html">О проекте</a>
+          <a  href="https://freenetproject.org/ru/pages/volunteer.html">Стать волонтером</a>
+          <a  href="https://freenetproject.org/ru/pages/documentation.html">Документация</a>
+          <a  href="https://freenetproject.org/ru/pages/download.html">Скачать</a>
+          <a  href="https://freenetproject.org/ru/pages/help.html">Помощь</a>
+        </nav><!-- /#menu -->
+
+	<aside class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</aside>
+
+	<nav id="language">
+		<span>Language</span>
+				<a href="https://freenetproject.org/freenet-075-build-1472-released.html">en</a>
+				<a href="https://freenetproject.org/fr/freenet-075-build-1472-released.html">fr</a>
+	</nav>
+
+	</div>
+	<main>
+
+        <header id="banner" class="body">
+                <h1>Freenet 0.7.5 build 1472 released</h1>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <div class="post-info">
+    <time class="published" datetime="2016-03-19T00:00:00+01:00">
+      Sat 19 March 2016
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://freenetproject.org/ru/author/freenet-project-inc.html">Freenet Project Inc.</a>
+    </address>
+  </div><!-- /.post-info -->
+  <div class="entry-content">
+    <p>This is the last build to support Java 6! The next build will require Java 7 or higher. Nodes running Java 7 or higher and using the official update key will now use a new update key. Nodes on Java 6 remain using the old update key and will not be updated to further builds. Thanks to yadevel for fixing the regression this release was blocking on!</p>
+<p>This version was initially partially released as build 1471 - it was released on GitHub but not offered from the website or auto-update. Build 1472 fixes a bug which when using Java 6 prevented nodes from starting for the first time. It did not break existing installations.</p>
+<p>Highlights:</p>
+<ul>
+<li>Fix uploads stalling when using MAXIMUM physical security.</li>
+<li>Fix lots of "setNativePriority(X) has failed!", which was caused by a serious thread priority problem. This might fix nodes unexpectedly losing peers.</li>
+<li>Order alerts within a category by time: if you have lots of messages from darknet peers they will remain nicely sorted.</li>
+<li>There is now a <a href="https://github.com/freenet/fred/pull/157">caching layer</a> which should significantly reduce I/O load.</li>
+<li>Update WebOfTrust from build 15 to build 18. <a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0016">Its</a> <a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0017">changelogs</a> <a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0018">are</a> separate, but the changes reduce CPU load. Incremental score recomputation requires roughly 3 percent of the time of full recomputation, and queuing trust lists to disk lowers thread usage.</li>
+</ul>
+<p>Translations:</p>
+<ul>
+<li>Add partial Greek translation.</li>
+<li>Update German, Bokmål, Brazilian Portuguese, Simplified Chinese, and  Traditional Chinese translations.</li>
+<li>Fix Bokmål localization loading.</li>
+</ul>
+<p>Also:</p>
+<ul>
+<li>Remove Gantros Index from the default bookmark list because it stopped updating.</li>
+<li>Remove Linkageddon from the default bookmark list because it stopped updating.</li>
+<li>New version of UPnP to fix some instability and compatibility problems. Thanks to 007pig we have a <a href="https://github.com/freenet/plugin-UPnP2">new UPnP plugin</a> in development which supports UPnP2, but it is not yet included.</li>
+<li>New version of KeyUtils.</li>
+</ul>
+<p>WebOfTrust now has an updatable testing version built and maintained by xor. To use it, unload WebOfTrust, then load "WebOfTrust Testing Versions" on the Plugins page. Versions built by xor will not work with Java 6.</p>
+<p>Sites can set favicons with <code>&lt;link rel="icon" type=... href=...&gt;</code>. (<code>type</code> could be <code>"image/x-icon"</code>)</p>
+<p>Extensive review and improvement of English source strings and French and Spanish translations. Tests for and fixes of value substitution in translations. Thanks Vaughan Woodzell!</p>
+<p>The default theme is now sky-static instead of clean-dropdown. This looks less outdated, though not modern.</p>
+<p>Fix default bookmarks missing the "software" category since build 1470. If you don't see this category please re-add the default bookmark set from the bookmark editing page.</p>
+<p>IpToCountry database is updated. (This allows providing the country flags on the peers pages. It is local to each instance and does not contact an external service.)</p>
+<p>Add partial CSS3 support, including viewport lengths. Thanks, Ben Green!</p>
+  </div><!-- /.entry-content -->
+  <a href="archives.html">News Archives</a>
+</section>
+	</main>
+
+<footer>
+	<header>
+	<h2>Hyphanet</h2>
+	<p>Navigate with Freedom</p>
+	</header>
+
+	<ul class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</ul>
+	<!--
+	<form id="MLform" method="POST" action="https://ml.freenetproject.org/v1/">
+		<input name="email" id="email" required="" type="email"></input>
+		<input name="action" value="subscription" type="hidden"></input>
+		<input name="list" value="announce" type="hidden"></input>
+
+		<button id="submit">Submit</button>
+	</form>
+	-->
+
+	<div id="contact">
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@sserp</span></br>
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@troppus</span></br>
+		<span>IRC: <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet">#freenet on irc.libera.chat</a></span></br>
+	</div>
+
+	<p id="copyright">&copy; Copyright The Hyphanet Project Inc. and contributors | Licensed under the <a href="https://www.gnu.org/licenses/fdl-1.3.html">GDFL</a></p>
+</footer></body>
+</html>

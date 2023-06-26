@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/8d8673608f3f58fa65f91f052db6b152_bebas.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/7192e6c3efd5cad0699612ddead007bc_ptsans.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/d7cf95772fa607c4ca69f1b345c1a07e_social.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/99c410000d582bf13683abc3525fd2bb_toc.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/253e26978d0d20f538fa6724a05a7bd3_content.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/c9199870619f96b70c580616bb370d74_donate.css">
+        <link rel="stylesheet" href="https://freenetproject.org/fr/theme/webassets-external/98a94826af525d8722e012305a68f7ec_menu.css">
+          <title>Freenet Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="https://freenetproject.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Freenet Project Full Atom Feed" />
+	<link rel="alternate" hreflang="fr" href="https://freenetproject.org/fr/freenet-build-1493-initial-user-experience-sneakernet-performance.html" />
+	<link rel="alternate" hreflang="en" href="https://freenetproject.org/freenet-build-1493-initial-user-experience-sneakernet-performance.html" />
+	<link rel="alternate" hreflang="ru" href="https://freenetproject.org/ru/freenet-build-1493-initial-user-experience-sneakernet-performance.html" />
+	<link rel="alternate" hreflang="x-default" href="https://freenetproject.org/freenet-build-1493-initial-user-experience-sneakernet-performance.html" />
+	<link rel="canonical" href="https://freenetproject.org/fr/freenet-build-1493-initial-user-experience-sneakernet-performance.html" />
+
+
+
+
+      <meta property="og:title" content="Freenet Project" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://freenetproject.org/fr" />
+      <meta property="og:image" content="https://freenetproject.org/fr/" />
+      <meta property="og:image:secure_url" content="https://freenetproject.org/fr/theme/images/logo-blue.png" />
+      <meta property="og:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Freenet Project" />
+      <meta name="twitter:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:image" content="https://freenetproject.org/fr/theme/images/logo-blue.png" />
+</head>
+
+<body id="index" class="home">
+	<div>
+        <nav id="menu">
+	<a href="https://freenetproject.org/fr/">Hyphanet</a>
+          <a  href="https://freenetproject.org/fr/pages/about.html">About</a>
+          <a  href="https://freenetproject.org/fr/pages/volunteer.html">Volunteer</a>
+          <a  href="https://freenetproject.org/fr/pages/documentation.html">Documentation</a>
+          <a  href="https://freenetproject.org/fr/pages/download.html">Download</a>
+          <a  href="https://freenetproject.org/fr/pages/help.html">Help</a>
+        </nav><!-- /#menu -->
+
+	<aside class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</aside>
+
+	<nav id="language">
+		<span>Language</span>
+				<a href="https://freenetproject.org/freenet-build-1493-initial-user-experience-sneakernet-performance.html">en</a>
+				<a href="https://freenetproject.org/ru/freenet-build-1493-initial-user-experience-sneakernet-performance.html">ru</a>
+	</nav>
+
+	</div>
+	<main>
+
+        <header id="banner" class="body">
+                <h1>Freenet build 1493: initial user experience, sneakernet, performance</h1>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <div class="post-info">
+    <time class="published" datetime="2022-04-08T00:00:00+02:00">
+      Fri 08 April 2022
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://freenetproject.org/fr/author/freenet-project-inc.html">Freenet Project Inc.</a>
+    </address>
+  </div><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Freenet 0.7.5 build 1493 is now available.</p>
+<blockquote>
+<p><strong>Download Freenet <a href="pages/download.html">for Desktop</a></strong> (Windows, MacOSX, GNU Linux, <em>nix) or </em><em><a href="https://freenet-mobile.github.io/app/">for Android</a></em>*</p>
+</blockquote>
+<p>This build provides four core improvements:</p>
+<ol>
+<li>Curated default bookmarks,
+   including an actively maintained index and Shoeshop for sneakernet</li>
+<li>Better peer scaling for very fast nodes </li>
+<li>Updated defaults to adapt to the higher capacities of modern systems</li>
+<li>Compatibility with Java 17, first in the installers, with the
+   following update for all nodes</li>
+</ol>
+<p>Together these changes should improve the user experience for new
+people, give sneakernet the visibility it deserves, and increase the
+performance of the network as a whole.</p>
+<h2 id="default-bookmarks">Default Bookmarks</h2>
+<p>The <em>curated default bookmarks</em> provide a much better first-start 
+experience. Previously new users saw mostly outdated sites in 
+inactive indexes.</p>
+<p>By adding <em>Shoeshop</em> to enable <em>sneakernet</em> which can connect separate 
+Freenet networks even if no internet connection can be established
+(by transferring data via SD card without being able to corrupt what others write)
+Freenet now provides easy access to all the tools for self-publishing, not only in the 
+style of publishing an online blog (which is already easy with 
+Sharesite) or sending a file to an independent printer, but in the 
+much more self-reliant style, resourcefulness and rebellious spirit<sup>WP</sup> 
+of classical samizdat.</p>
+<h2 id="peer-scaling">Peer-Scaling</h2>
+<p>Adjusted peer-scaling fixes a conceptual problem: Fast nodes could 
+not utilize their bandwidth well enough, because the previous 
+peer-scaling did not take the aggregated bandwidth limit of the 
+peers into account. Now very fast nodes have linearly scaling 
+peer-counts to make it more likely that the capacity of their peers 
+added together matches the capacity of the fast node. The absolute 
+upper limits stay in place, because they are needed to preserve 
+privacy. There are also no changes to the peer-scaling of slower 
+nodes.</p>
+<p>The fixed scaling should improve the performance of the whole 
+network because it avoids creating artificial bottlenecks.</p>
+<h2 id="default-settings">Default Settings</h2>
+<p>Changes to the defaults are a doubled thread limit of newly 
+installed nodes (increased from 500 to 1000), with the stack size 
+per thread reduced by half to avoid higher memory consumption, the 
+datastore size is increased from 20GiB to 100GiB, because SSDs are 
+much faster and more resilient than before, and the default 
+bandwidth to offer if the actual speed cannot be found is doubled 
+to 32KiB/s.</p>
+<p>These newer defaults should also improve the first-time user 
+experience.</p>
+<h2 id="java-17">Java 17</h2>
+<p>Compatibility with Java 17 took longer than we hoped, because it 
+required deploying a newer wrapper and changes to the classpath. 
+This makes it easier to support packages for modern Linux, and it 
+should avoid losing nodes when Java updates itself (starting from 
+the next update this also applies to existing nodes; we have to 
+deploy the update code in 1493 so it can run during the update to 
+1494).</p>
+<h2 id="translations">Translations</h2>
+<p>And last, but definitely not least, our translation team
+updated enough of the German, Persian, Finnish, 
+Italian, Japanese, Norwegian, Portuguese, Russian, and Swedish 
+texts in Freenet that we can ship the new versions. Thank you 
+very much!</p>
+<h2 id="contribute">Contribute</h2>
+<p>If you want to help us get better, please chat with us in <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two">#freenet @ irc.libera.chat</a>. And give us time to answer, we’re all volunteers and might not be in your timezone.</p>
+<p>To get into development right-away, have a look at one of the <a href="https://github.com/freenet/wiki/wiki/Projects">Freenet-Projects</a> or just get <a href="https://github.com/freenet/fred">fred</a> and fix something that annoys you.</p>
+<p>And to take on something that makes a big difference, have a look at the <a href="https://github.com/freenet/wiki/wiki/High-Impact-tasks">high-impact tasks</a>.</p>
+<h2 id="what-is-freenet">What is Freenet?</h2>
+<blockquote>
+<p>Freenet is a peer-to-peer platform for<br />
+censorship-resistant and privacy-respecting<br />
+publishing and communication.</p>
+</blockquote>
+<p>That Freenet can keep moving forward and help people worldwide to 
+exercise their basic rights and freedoms is the work of amazing 
+volunteers, both contributors and people running Freenet nodes. </p>
+<p>Thank you for your contributions, and thank you for using Freenet!</p>
+<p>-- AB</p>
+<blockquote>
+<p><strong>Download Freenet <a href="pages/download.html">for Desktop</a></strong> (Windows, MacOSX, GNU Linux, <em>nix) or </em><em><a href="https://freenet-mobile.github.io/app/">for Android</a></em>*</p>
+</blockquote>
+  </div><!-- /.entry-content -->
+  <a href="archives.html">News Archives</a>
+</section>
+	</main>
+
+<footer>
+	<header>
+	<h2>Hyphanet</h2>
+	<p>Navigate with Freedom</p>
+	</header>
+
+	<ul class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</ul>
+	<!--
+	<form id="MLform" method="POST" action="https://ml.freenetproject.org/v1/">
+		<input name="email" id="email" required="" type="email"></input>
+		<input name="action" value="subscription" type="hidden"></input>
+		<input name="list" value="announce" type="hidden"></input>
+
+		<button id="submit">Submit</button>
+	</form>
+	-->
+
+	<div id="contact">
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@sserp</span></br>
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@troppus</span></br>
+		<span>IRC: <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet">#freenet on irc.libera.chat</a></span></br>
+	</div>
+
+	<p id="copyright">&copy; Copyright The Hyphanet Project Inc. and contributors | Licensed under the <a href="https://www.gnu.org/licenses/fdl-1.3.html">GDFL</a></p>
+</footer></body>
+</html>

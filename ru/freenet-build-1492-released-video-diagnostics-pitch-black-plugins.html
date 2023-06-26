@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/8d8673608f3f58fa65f91f052db6b152_bebas.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/7192e6c3efd5cad0699612ddead007bc_ptsans.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/d7cf95772fa607c4ca69f1b345c1a07e_social.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/99c410000d582bf13683abc3525fd2bb_toc.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/253e26978d0d20f538fa6724a05a7bd3_content.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/c9199870619f96b70c580616bb370d74_donate.css">
+        <link rel="stylesheet" href="https://freenetproject.org/ru/theme/webassets-external/98a94826af525d8722e012305a68f7ec_menu.css">
+          <title>Freenet Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="https://freenetproject.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Freenet Project Full Atom Feed" />
+	<link rel="alternate" hreflang="ru" href="https://freenetproject.org/ru/freenet-build-1492-released-video-diagnostics-pitch-black-plugins.html" />
+	<link rel="alternate" hreflang="en" href="https://freenetproject.org/freenet-build-1492-released-video-diagnostics-pitch-black-plugins.html" />
+	<link rel="alternate" hreflang="fr" href="https://freenetproject.org/fr/freenet-build-1492-released-video-diagnostics-pitch-black-plugins.html" />
+	<link rel="alternate" hreflang="x-default" href="https://freenetproject.org/freenet-build-1492-released-video-diagnostics-pitch-black-plugins.html" />
+	<link rel="canonical" href="https://freenetproject.org/ru/freenet-build-1492-released-video-diagnostics-pitch-black-plugins.html" />
+
+
+
+
+      <meta property="og:title" content="Freenet Project" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://freenetproject.org/ru" />
+      <meta property="og:image" content="https://freenetproject.org/ru/" />
+      <meta property="og:image:secure_url" content="https://freenetproject.org/ru/theme/images/logo-blue.png" />
+      <meta property="og:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Freenet Project" />
+      <meta name="twitter:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:image" content="https://freenetproject.org/ru/theme/images/logo-blue.png" />
+</head>
+
+<body id="index" class="home">
+	<div>
+        <nav id="menu">
+	<a href="https://freenetproject.org/ru/">Hyphanet</a>
+          <a  href="https://freenetproject.org/ru/pages/about.html">О проекте</a>
+          <a  href="https://freenetproject.org/ru/pages/volunteer.html">Стать волонтером</a>
+          <a  href="https://freenetproject.org/ru/pages/documentation.html">Документация</a>
+          <a  href="https://freenetproject.org/ru/pages/download.html">Скачать</a>
+          <a  href="https://freenetproject.org/ru/pages/help.html">Помощь</a>
+        </nav><!-- /#menu -->
+
+	<aside class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</aside>
+
+	<nav id="language">
+		<span>Language</span>
+				<a href="https://freenetproject.org/freenet-build-1492-released-video-diagnostics-pitch-black-plugins.html">en</a>
+				<a href="https://freenetproject.org/fr/freenet-build-1492-released-video-diagnostics-pitch-black-plugins.html">fr</a>
+	</nav>
+
+	</div>
+	<main>
+
+        <header id="banner" class="body">
+                <h1>Freenet build 1492 released: video, diagnostics, pitch black, plugins</h1>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <div class="post-info">
+    <time class="published" datetime="2021-11-04T00:00:00+01:00">
+      Thu 04 November 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://freenetproject.org/ru/author/freenet-project-inc.html">Freenet Project Inc.</a>
+    </address>
+  </div><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Freenet 0.7.5 build 1492 is now available.</p>
+<blockquote>
+<p><strong>Download Freenet <a href="pages/download.html">for Desktop</a></strong> (Windows, MacOSX, GNU Linux, <em>nix) or </em><em><a href="https://freenet-mobile.github.io/app/">for Android</a></em>*</p>
+</blockquote>
+<p>Content of this release:</p>
+<ul>
+<li>Pitch black mitigation finalized: The high-security friend-to-friend mode is now robust against attack</li>
+<li>Improved video-on-demand streaming quality</li>
+<li>New diagnostics component with thread statistics</li>
+<li>Plugin updates</li>
+<li>Bugfixes</li>
+</ul>
+<h2 id="pitch-black-mitigation">Pitch Black Mitigation</h2>
+<p>For the last decade Freenet has been vulnerable to <a href="https://bugs.freenetproject.org/view.php?id=3919">the pitch black attack</a>
+that could disrupt its high-security friend-to-friend mode.</p>
+<p>With this release, <strong>the pitch black attack is mitigated</strong>.</p>
+<p>If you decided not to use Freenet in the past because you knew about
+the pitch black attack, now is a great time to give Freenet another try!</p>
+<p>This finalizes the mitigation <a href="https://github.com/freenet/fred/pull/736">with a test</a>
+that shows that it is effective at reducing the impact of the attack
+and recovering from it:</p>
+<p><img alt="Average peer location during an ongoing Pitch Black Attack with the mitigation in place" src="https://freenetproject.org/ru/assets/img/2021-11-04-pitch-black-mitigation-ongoing-attack.png" /></p>
+<p><em>What is the pitch black attack?</em></p>
+<p>On Freenet, every node has a location on a circle.</p>
+<p>To optimize routing, pure friend-to-friend nodes (no opennet)
+swap these locations without changing actual connections.
+The pitch black attack steals the locations one by one
+and replaces them with a single one,
+so that after a while all nodes are at the same location.</p>
+<p>Then no sensible routing is possible anymore.</p>
+<p>The mitigation detects when parts of the circle are devoid of routing
+nodes and fills up the holes by switching there. Then regular swapping
+brings them back to an optimized position.</p>
+<p><em>This mitigation was <a href="https://nlnet.nl/project/Freenet-Routing/">sponsored</a>
+by nlnet as part of the Horizon 2020 program of the EU.</em></p>
+<h2 id="video-on-demand">Video-on-Demand</h2>
+<p>The video-player now prevents most visual flickering and makes
+video-on-demand over Freenet a good match for conference-talks like
+those from 36c3:</p>
+<p><img alt="Streaming 36c3 over Freenet" src="https://freenetproject.org/ru/assets/img/2021-11-04-streaming-36c3-over-freenet.png" /></p>
+<p>(license: <a href="https://creativecommons.org/licenses/by/4.0/">creativecommons attribution 4.0 international</a>)</p>
+<p>The <a href="https://hg.sr.ht/~arnebab/guile-media-site/">guile media site</a>
+repository provides a tool to create your own streaming site that is
+hosted decentrally and with good privacy protections within Freenet.</p>
+<p>While publishing this is not as simple as uploading a video to a
+streaming site, for the visitors of your site it is convenient and safe.</p>
+<p>No ads, no trackers, but good moderation tools without centralized
+control. As a happy user put it:</p>
+<p><em>“That’s Freenet. It’s the internet that should have been”</em> — Red, 2021</p>
+<h2 id="diagnostics">Diagnostics</h2>
+<p>To help performance analysis, there is now a diagnostics component
+with thread runtime information. You can activate it in the advanced
+core settings of your node. This should make it easier to identify
+performance bottlenecks.</p>
+<p>Thanks to DC*!</p>
+<h2 id="plugin-updates">Plugin-Updates</h2>
+<ul>
+<li>KeyUtils got bugfixes from TheSeeker</li>
+<li>Library now searches all indexes if you just hit search — thanks to redwerk.</li>
+<li>Library now also allows setting a custom link suffic (docname) — thanks to TheSeeker.</li>
+<li>Spider got bugfixes from redwerk and juiceman.</li>
+<li>FlogHelper provides simple clickable audio and video tags.
+  Just put a m3u link into the video tag to have video-on-demand.</li>
+</ul>
+<h2 id="bugfixes">Bugfixes</h2>
+<ul>
+<li>skip in support.io.SkipShieldingInputStream must return
+  non-negative. Thanks to dennisnez.</li>
+<li>NodeConfig was reading a particular config from default on every
+  start up. Thanks to desyncr.</li>
+<li>OpenJDK 16+ compat: add wrapper.conf argument to allow access to
+  internal openjdk modules.</li>
+<li>Correct "current size" option in Wizard =&gt; datastore size.
+  Thanks to AC4BB21B.</li>
+</ul>
+<h2 id="contribute">Contribute</h2>
+<p>If you want to help us get better, please help us get the current
+pending pull-requests in shape for merging, by reviewing and/or by
+improving already reviewed but <a href="https://github.com/freenet/wiki/wiki/Large-Pull-requests-that-need-work">inactive pull-requests</a>.</p>
+<p>We now also have a list of <a href="https://github.com/freenet/wiki/wiki/High-Impact-tasks">high-impact tasks</a>.</p>
+<p>To join in, please come to  <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two">#freenet @ irc.libera.chat</a>. And please give us time to answer, we’re all volunteers and might not be in your timezone.</p>
+<h2 id="what-is-freenet">What is Freenet?</h2>
+<blockquote>
+<p>Freenet is a peer-to-peer platform for<br />
+censorship-resistant and privacy-respecting<br />
+publishing and communication.</p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p>Freenet is a communication system that covers the needs for protection<br />
+expected from a secure data broker for Multi-Party Data Exchange in IoT for Health.<br />
+(<a href="https://www.igi-global.com/chapter/using-freenet-as-a-broker-for-multi-party-data-exchange-in-iot-for-health/257911">source</a>)</p>
+</blockquote>
+<p>This is what Freenet already accomplished.</p>
+<p>And we could only get this far together, Freenet developers and
+Freenet users who fight to further the open and democratic
+distribution of information, because without users, it is hard for
+software to make a difference.</p>
+<p>Thank you for using Freenet!</p>
+<ul>
+<li>Arne Babenhauserheide</li>
+</ul>
+<p>Changes in 1492:</p>
+<p>Fred:</p>
+<ul>
+<li>
+<p>The diagnostics component provides thread runtime statistics. Thanks to DC*.<br />
+<a href="https://github.com/freenet/fred/pull/727">https://github.com/freenet/fred/pull/727</a></p>
+</li>
+<li>
+<p>The multi-node test to show that the mitigation against the pitch
+  black attack works.<br />
+<a href="https://github.com/freenet/fred/pull/736">https://github.com/freenet/fred/pull/736</a></p>
+</li>
+<li>
+<p>The m3u-player for video on demand over Freenet now prevents most
+  visual flickering.<br />
+<a href="https://github.com/freenet/fred/pull/734">https://github.com/freenet/fred/pull/734</a></p>
+</li>
+<li>
+<p>Clickable labels for checkboxes. Thanks to AC4BB21B.<br />
+<a href="https://github.com/freenet/fred/pull/741">https://github.com/freenet/fred/pull/741</a></p>
+</li>
+<li>
+<p>Fix: skip in support.io.SkipShieldingInputStream must return
+  non-negative. Thanks to dennisnez.<br />
+<a href="https://github.com/freenet/fred/pull/737">https://github.com/freenet/fred/pull/737</a></p>
+</li>
+<li>
+<p>Fix: NodeConfig was reading a particular config from default on every
+  start up. Thanks to desyncr.<br />
+<a href="https://github.com/freenet/fred/pull/739">https://github.com/freenet/fred/pull/739</a></p>
+</li>
+<li>
+<p>OpenJDK 16+ compat: add wrapper.conf argument to allow access to
+  internal openjdk modules.<br />
+<a href="https://github.com/freenet/fred/pull/740">https://github.com/freenet/fred/pull/740</a></p>
+</li>
+<li>
+<p>Fix: Correct "current size" option in Wizard =&gt; datastore size. Thanks to
+AC4BB21B.<br />
+<a href="https://github.com/freenet/fred/pull/742">https://github.com/freenet/fred/pull/742</a></p>
+</li>
+</ul>
+<p>Plugins:</p>
+<ul>
+<li>
+<p>KeyUtils:
+  Fix API call to allow compiling, and<br />
+  Fix extra bytes display for composed SSK.<br />
+  both thanks to TheSeeker.<br />
+<a href="https://github.com/freenet/plugin-KeyUtils/pull/17">https://github.com/freenet/plugin-KeyUtils/pull/17</a><br />
+<a href="https://github.com/freenet/plugin-KeyUtils/pull/16">https://github.com/freenet/plugin-KeyUtils/pull/16</a></p>
+</li>
+<li>
+<p>Library:<br />
+  search with unchecked boxes thanks to redwerk<br />
+<a href="https://github.com/freenet/plugin-Library/pull/14">https://github.com/freenet/plugin-Library/pull/14</a><br />
+  custom index docname thanks to TheSeeker<br />
+<a href="https://github.com/freenet/plugin-Library/pull/18">https://github.com/freenet/plugin-Library/pull/18</a></p>
+</li>
+<li>
+<p>Spider:<br />
+  Fix writing to the bucket and Replace SortedIntSet thanks to redwerks<br />
+<a href="https://github.com/freenet/plugin-Spider/pull/6">https://github.com/freenet/plugin-Spider/pull/6</a></p>
+</li>
+<li>
+<p>Fix build thanks to Juiceman<br />
+<a href="https://github.com/freenet/plugin-Spider/pull/5">https://github.com/freenet/plugin-Spider/pull/5</a></p>
+</li>
+<li>
+<p>FlogHelper<br />
+  Add new media tags in tool menu: audio and video thanks to
+  AlexandreRio<br />
+<a href="https://github.com/freenet/plugin-FlogHelper/pull/19">https://github.com/freenet/plugin-FlogHelper/pull/19</a><br />
+  (you can simply set an uploaded m3u file as as source of a video
+   and it will show up on your flog as video on demand)</p>
+</li>
+</ul>
+<p>related: Florent fixed our website build (Thank you!), so we can release
+there again.
+<a href="https://freenetproject.org/">https://freenetproject.org/</a></p>
+<blockquote>
+<p><strong>Download Freenet <a href="pages/download.html">for Desktop</a></strong> (Windows, MacOSX, GNU Linux, <em>nix) or </em><em><a href="https://freenet-mobile.github.io/app/">for Android</a></em>*</p>
+</blockquote>
+  </div><!-- /.entry-content -->
+  <a href="archives.html">News Archives</a>
+</section>
+	</main>
+
+<footer>
+	<header>
+	<h2>Hyphanet</h2>
+	<p>Navigate with Freedom</p>
+	</header>
+
+	<ul class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</ul>
+	<!--
+	<form id="MLform" method="POST" action="https://ml.freenetproject.org/v1/">
+		<input name="email" id="email" required="" type="email"></input>
+		<input name="action" value="subscription" type="hidden"></input>
+		<input name="list" value="announce" type="hidden"></input>
+
+		<button id="submit">Submit</button>
+	</form>
+	-->
+
+	<div id="contact">
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@sserp</span></br>
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@troppus</span></br>
+		<span>IRC: <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet">#freenet on irc.libera.chat</a></span></br>
+	</div>
+
+	<p id="copyright">&copy; Copyright The Hyphanet Project Inc. and contributors | Licensed under the <a href="https://www.gnu.org/licenses/fdl-1.3.html">GDFL</a></p>
+</footer></body>
+</html>

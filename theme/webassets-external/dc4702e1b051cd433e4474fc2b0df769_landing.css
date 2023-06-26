@@ -1,0 +1,47 @@
+body > div > header h1:before {
+	display: block;
+	content: url('../images/logo-large.png');
+	max-width: 100%;
+	box-sizing: border-box;
+	margin-bottom: -2.25em;
+}
+
+
+@media only screen and (max-width : 720px) {
+	body > div > header h1:before {
+		content: url('../images/logo-medium.png');
+		margin-bottom: -1.25em;
+	}
+}
+
+#rename {
+	text-align: center;
+	font-family: 'PT Sans','Lucida Sans','Segoe UI','Calibri',sans-serif;
+	color: #f3f6f6;
+}
+
+a {
+	color: white;
+}
+
+ul, ol {
+	padding: 0 0 0 0;
+}
+
+ol li,
+ul li {
+	display: block;
+}
+
+#features li,
+ol li,
+ul li,
+ol, ul {
+    list-style-type: none;
+}
+
+nav#menu:after {
+	display: block;
+	margin-left: 2em;
+	content: url('../images/greeble-white.png');
+}

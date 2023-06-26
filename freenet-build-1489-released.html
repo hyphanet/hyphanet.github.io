@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/8d8673608f3f58fa65f91f052db6b152_bebas.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/7192e6c3efd5cad0699612ddead007bc_ptsans.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/d7cf95772fa607c4ca69f1b345c1a07e_social.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/99c410000d582bf13683abc3525fd2bb_toc.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/253e26978d0d20f538fa6724a05a7bd3_content.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/c9199870619f96b70c580616bb370d74_donate.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/98a94826af525d8722e012305a68f7ec_menu.css">
+          <title>Freenet Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="https://freenetproject.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Freenet Project Full Atom Feed" />
+	<link rel="alternate" hreflang="en" href="https://freenetproject.org/freenet-build-1489-released.html" />
+	<link rel="alternate" hreflang="fr" href="https://freenetproject.org/fr/freenet-build-1489-released.html" />
+	<link rel="alternate" hreflang="ru" href="https://freenetproject.org/ru/freenet-build-1489-released.html" />
+	<link rel="alternate" hreflang="x-default" href="https://freenetproject.org/freenet-build-1489-released.html" />
+	<link rel="canonical" href="https://freenetproject.org/freenet-build-1489-released.html" />
+
+
+
+
+      <meta property="og:title" content="Freenet Project" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://freenetproject.org" />
+      <meta property="og:image" content="https://freenetproject.org/" />
+      <meta property="og:image:secure_url" content="https://freenetproject.org/theme/images/logo-blue.png" />
+      <meta property="og:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Freenet Project" />
+      <meta name="twitter:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:image" content="https://freenetproject.org/theme/images/logo-blue.png" />
+</head>
+
+<body id="index" class="home">
+	<div>
+        <nav id="menu">
+	<a href="https://freenetproject.org/">Hyphanet</a>
+          <a  href="https://freenetproject.org/pages/about.html">About</a>
+          <a  href="https://freenetproject.org/pages/volunteer.html">Volunteer</a>
+          <a  href="https://freenetproject.org/pages/documentation.html">Documentation</a>
+          <a  href="https://freenetproject.org/pages/download.html">Download</a>
+          <a  href="https://freenetproject.org/pages/help.html">Help</a>
+        </nav><!-- /#menu -->
+
+	<aside class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</aside>
+
+	<nav id="language">
+		<span>Language</span>
+				<a href="https://freenetproject.org/fr/freenet-build-1489-released.html">fr</a>
+				<a href="https://freenetproject.org/ru/freenet-build-1489-released.html">ru</a>
+	</nav>
+
+	</div>
+	<main>
+
+        <header id="banner" class="body">
+                <h1>Freenet build 1489 released</h1>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <div class="post-info">
+    <time class="published" datetime="2020-12-21T00:00:00+01:00">
+      Mon 21 December 2020
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://freenetproject.org/author/freenet-project-inc.html">Freenet Project Inc.</a>
+    </address>
+  </div><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Freenet 0.7.5 build 1489 codename “solstice” is now available.</p>
+<blockquote>
+<p><strong><a href="pages/download.html">Download Freenet</a></strong></p>
+</blockquote>
+<p>This release adds an m3u-filter that enables safe access to m3u-playlists.
+Together with the existing support for media files (Audio using mp3,
+Ogg Vorbis, or Flac, and video using Ogg Theora), safe playlists make
+Freenet viable as <strong>streaming platform</strong>: You can create an m3u-file
+and others can play it right from their media-players (i.e. mpv or
+vlc). If you want to stream via Freenet yourself, you’ll find help in
+a <a href="https://www.draketo.de/software/stream-over-freenet.html">thirdparty howto</a>.</p>
+<p>To try an example stream on GNU/Linux with a default Freenet install, just call</p>
+<pre><code>mpv --ytdl=no --prefetch-playlist http://127.0.0.1:8888/freenet:SSK@d8lB5dqTaAt~39aFk6KyMU4cb5y3BEkNWgneouaVq0g,P~pzGxzDr08D7NfzKkKOvRHGf3jXUAr7lavnZfszflc,AQACAAE/stream.m3u
+</code></pre>
+<p>Test-stream under cc-licenses thanks to <a href="https://theradio.cc/">theradio.cc</a>. Let the sun return (or the nights grow longer again, depending on where you live) with <strong>radio over Freenet</strong>!</p>
+<p>On the network layer this release adopts
+the one safe change from the let-it-burn patchset: 
+Maximum backoff-times are reduced from 3 hours to 8 minutes.
+This might increase bandwidth available.
+Also progresspage.js now has a declared license for <a href="https://www.gnu.org/software/librejs/">Libre-JS</a>.</p>
+<p>For additional details see the <a href="https://github.com/freenet/fred/releases/tag/build01489">release tag for 1489</a>.
+You can download this release as usual from the <a href="pages/download.html">download page</a>,
+or if you are already using Freenet, simply let your freenet node
+update itself over Freenet.</p>
+<blockquote>
+<p><strong><a href="pages/download.html">Download Freenet</a></strong></p>
+</blockquote>
+<p>We hope you enjoy using Freenet!</p>
+<ul>
+<li>Arne Babenhauserheide</li>
+</ul>
+  </div><!-- /.entry-content -->
+  <a href="archives.html">News Archives</a>
+</section>
+	</main>
+
+<footer>
+	<header>
+	<h2>Hyphanet</h2>
+	<p>Navigate with Freedom</p>
+	</header>
+
+	<ul class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</ul>
+	<!--
+	<form id="MLform" method="POST" action="https://ml.freenetproject.org/v1/">
+		<input name="email" id="email" required="" type="email"></input>
+		<input name="action" value="subscription" type="hidden"></input>
+		<input name="list" value="announce" type="hidden"></input>
+
+		<button id="submit">Submit</button>
+	</form>
+	-->
+
+	<div id="contact">
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@sserp</span></br>
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@troppus</span></br>
+		<span>IRC: <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet">#freenet on irc.libera.chat</a></span></br>
+	</div>
+
+	<p id="copyright">&copy; Copyright The Hyphanet Project Inc. and contributors | Licensed under the <a href="https://www.gnu.org/licenses/fdl-1.3.html">GDFL</a></p>
+</footer></body>
+</html>

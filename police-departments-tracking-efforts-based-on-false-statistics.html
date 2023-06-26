@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/8d8673608f3f58fa65f91f052db6b152_bebas.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/7192e6c3efd5cad0699612ddead007bc_ptsans.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/d7cf95772fa607c4ca69f1b345c1a07e_social.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/99c410000d582bf13683abc3525fd2bb_toc.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/253e26978d0d20f538fa6724a05a7bd3_content.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/c9199870619f96b70c580616bb370d74_donate.css">
+        <link rel="stylesheet" href="https://freenetproject.org/theme/webassets-external/98a94826af525d8722e012305a68f7ec_menu.css">
+          <title>Freenet Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link href="https://freenetproject.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Freenet Project Full Atom Feed" />
+	<link rel="alternate" hreflang="en" href="https://freenetproject.org/police-departments-tracking-efforts-based-on-false-statistics.html" />
+	<link rel="alternate" hreflang="fr" href="https://freenetproject.org/fr/police-departments-tracking-efforts-based-on-false-statistics.html" />
+	<link rel="alternate" hreflang="ru" href="https://freenetproject.org/ru/police-departments-tracking-efforts-based-on-false-statistics.html" />
+	<link rel="alternate" hreflang="x-default" href="https://freenetproject.org/police-departments-tracking-efforts-based-on-false-statistics.html" />
+	<link rel="canonical" href="https://freenetproject.org/police-departments-tracking-efforts-based-on-false-statistics.html" />
+
+
+
+
+      <meta property="og:title" content="Freenet Project" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://freenetproject.org" />
+      <meta property="og:image" content="https://freenetproject.org/" />
+      <meta property="og:image:secure_url" content="https://freenetproject.org/theme/images/logo-blue.png" />
+      <meta property="og:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Freenet Project" />
+      <meta name="twitter:description" content="Hyphanet is a peer-to-peer platform for censorship-resistant communication and publishing." />
+      <meta name="twitter:image" content="https://freenetproject.org/theme/images/logo-blue.png" />
+</head>
+
+<body id="index" class="home">
+	<div>
+        <nav id="menu">
+	<a href="https://freenetproject.org/">Hyphanet</a>
+          <a  href="https://freenetproject.org/pages/about.html">About</a>
+          <a  href="https://freenetproject.org/pages/volunteer.html">Volunteer</a>
+          <a  href="https://freenetproject.org/pages/documentation.html">Documentation</a>
+          <a  href="https://freenetproject.org/pages/download.html">Download</a>
+          <a  href="https://freenetproject.org/pages/help.html">Help</a>
+        </nav><!-- /#menu -->
+
+	<aside class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</aside>
+
+	<nav id="language">
+		<span>Language</span>
+				<a href="https://freenetproject.org/fr/police-departments-tracking-efforts-based-on-false-statistics.html">fr</a>
+				<a href="https://freenetproject.org/ru/police-departments-tracking-efforts-based-on-false-statistics.html">ru</a>
+	</nav>
+
+	</div>
+	<main>
+
+        <header id="banner" class="body">
+                <h1>Police department's tracking efforts based on false statistics</h1>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <div class="post-info">
+    <time class="published" datetime="2016-05-26T00:00:00+02:00">
+      Thu 26 May 2016
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://freenetproject.org/author/freenet-project-inc.html">Freenet Project Inc.</a>
+    </address>
+  </div><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Documents initially made public by the Missouri police department
+describe their efforts on tracking Freenet usage.  Using a simple
+scheme, they claim a near zero false positive rate for
+tracking the originator of a download.  While we applaud all public
+documentation on attacks, we have to point out that the claimed
+effectiveness of their attacks is based solely on flawed mathematics.
+In reality, the false positive rate of their method is at least 83%,
+and close to 100% in real world scenarios.</p>
+<p>The claimed effectiveness of their attack is based on a false
+assumption about the distribution of the HTL of incoming requests.  HTL (Hops
+to Live) is a number embedded in each request that is usually
+decremented when the request is forwarded, starting at a value of 18
+at the originator of the request, and serves to limit the number of
+hops a request can survive on the network.  As a security precaution,
+the HTL is decremented probabilistically on the first few hops.  In
+their tracking efforts, the Missouri police department assumes that
+when multiple requests for pieces of a file arrive from a single node,
+and all these requests have HTL 18 with no requests at HTL 17 or 16,
+this node must be the originator of the requests, with a false
+positive probability decreasing with the number of requests received
+from the node.  This would be true if whether the HTL is
+decremented is decided per request, which has historically been the
+case in the early days of Freenet.  The vulnerability they claim to
+exploit was however addressed in 2008 (last touched in <a href="https://github.com/freenet/fred/commit/4aaa08f11656af1dd857e45612763c9bd2d89fc2">this
+commit</a>).  Whether the HTL is decremented is since
+decided per connection, so any probability they claim using the
+aforementioned method is false.</p>
+<p>For every connection there is a 50% chance that all the HTL 18 requests
+(not only a single one, as would be the case with per-request
+probabilistic decrementing) did not originate from the node from which
+we received them but were forwarded one step. So for 10 connections
+(the lowest number of peers Freenet uses), there are on average 5
+other nodes whose HTL 18 requests are forwarded with HTL 18, so the
+probability that a given HTL 18 request originated at the node from
+which we received it is only about 17% (1 in 6). If the node has more
+connections (close to 30 is common), this probability is even lower. And
+this probability does not get higher when gathering more requests of
+chunks from a specific file or a specific kind of files, because they
+can reasonably all be forwarded from a different node — the one which
+really sent them.</p>
+<p>The heterogenity of the network and routing with second-level
+connections taken into account does not easily yield robust
+statistical claims without knowing the peers of peers of the node
+under investigation. Staying connected for a long time might allow for
+distinguishing between the changing peers of the node and requests
+originating at the node itself, but with significant cost.</p>
+<p>If the node which is tracked has friend-to-friend peers
+(which unlike automatically added peers do not change regularly), even waiting
+will not allow finding out with the described method whether HTL 18 requests came from the
+node itself or from the peers connected over
+friend-to-friend connections.</p>
+<p>For details, see <a href="https://github.com/freenet/fred/blob/next/src/freenet/node/PeerNode.java#L1603">the code</a>.</p>
+<p>This does not make it impossible to track Freenet users who use only
+Opennet mode (connecting to strangers), since a network where nodes
+connect to strangers is inherently susceptible to Sybil attacks,
+where nodes of typical users are outnumbered by malicious, colluding nodes.</p>
+<p>The only way to defend against serious attacks is to <em>use Freenet in
+Friend-to-Friend mode</em>, where the precondition to tracking a user is
+social engineering to get the people to whom he/she is connected to
+betray the user. The need to defend against this type of attack is
+the reason why the core of Freenet was rewritten in 2007 to add this
+Friend-to-Friend mode (called Darknet mode).</p>
+<p>However the method used by the Missouri police department is using
+false statistics: despite its flaws, Freenet's Opennet is much harder to
+track than they claim.</p>
+<p>The Freenet developers do not condone these attacks. Police departments
+try to use every legal venue to catch criminals. This is their job and
+vocation, but any attack they find could also be used by oppressive
+governments to suppress dissenting opinions, so we will work to fix attacks
+as they come to light.
+We expect law enforcement to get their math right, especially when using
+it in court. If they can get a warrant with an 83% false positive
+rate, that's a problem for lawmakers. If they falsely claim a 0% false
+positive rate, that's eroding the trust of citizens in the legal
+system.</p>
+<p>Additional information on this attack is available from the
+<a href="https://emu.freenetproject.org/pipermail/devl/2016-May/038923.html">mailing list discussion</a>.</p>
+<p>The mission of the Freenet Project is to safeguard freedom of the
+press by providing censorship resistant communication. This requires
+protecting people against being targeted for what they write or
+read. To achieve this, Freenet enables users to publish anonymous
+websites and offers chat, forums, and file-sharing, as well as
+confidential communication among friends and methods to leverage the
+capabilities of Freenet from other tools.</p>
+<p>When the police spread misinformation about the security of Freenet, it
+directly undermines our mission by driving users to networks which
+cannot provide a comparable level of security for
+whistle-blowers and those wishing to publish anonymously.</p>
+  </div><!-- /.entry-content -->
+  <a href="archives.html">News Archives</a>
+</section>
+	</main>
+
+<footer>
+	<header>
+	<h2>Hyphanet</h2>
+	<p>Navigate with Freedom</p>
+	</header>
+
+	<ul class="social">
+		<a href="https://www.facebook.com/freenetp2p">Facebook</a>
+		<a href="https://twitter.com/freenetproject">Twitter</a>
+	</ul>
+	<!--
+	<form id="MLform" method="POST" action="https://ml.freenetproject.org/v1/">
+		<input name="email" id="email" required="" type="email"></input>
+		<input name="action" value="subscription" type="hidden"></input>
+		<input name="list" value="announce" type="hidden"></input>
+
+		<button id="submit">Submit</button>
+	</form>
+	-->
+
+	<div id="contact">
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@sserp</span></br>
+		<span style="display:inline-block; unicode-bidi:bidi-override; direction:rtl;" onmouseover="this.innerText=this.innerText.split('').reverse().join(''); this.style.unicodeBidi='';this.style.direction=''; this.removeAttribute('onmouseover');">gro.tcejorpteneerf@troppus</span></br>
+		<span>IRC: <a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet">#freenet on irc.libera.chat</a></span></br>
+	</div>
+
+	<p id="copyright">&copy; Copyright The Hyphanet Project Inc. and contributors | Licensed under the <a href="https://www.gnu.org/licenses/fdl-1.3.html">GDFL</a></p>
+</footer></body>
+</html>

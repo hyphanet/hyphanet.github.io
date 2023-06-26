@@ -1,0 +1,6 @@
+@font-face {
+	font-family: "bebas-neue";
+	src: url("../fonts/BebasNeueRegular.woff2") format("woff2"),
+	     url("../fonts/BebasNeueRegular.woff") format("woff"),
+	     url("../fonts/BebasNeueRegular.otf") format("embedded-opentype");
+}
