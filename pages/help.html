@@ -573,10 +573,10 @@ be able to perform the attack while the data is being inserted; after that,
 it is distributed across the network and is much harder to trace, and the
 originator may have left the network. However, if by chance or by
 overwhelming force the attacker is connected to the whistleblower (or e.g.
-seizes the computers of everyone on the network), he may be able to identify
+seizes the computers of everyone on the network), they may be able to identify
 this much more quickly. All of this is vastly more difficult on a darknet,
 where everyone connects only to their friends, where it is very hard for an
-attacker to find nodes, and where to connect to a given node he must social
+attacker to find nodes, and where to connect to a given node they must social
 engineer its operator! Hyphanet does support opennet mode (plug and play),
 but darknet is far more secure, and far more difficult to block on a national
 firewall.</p>
@@ -635,7 +635,7 @@ here are the major classes of attack on Hyphanet we are presently aware of:</p>
   but see the below section on "correlation attacks", which generally are
   feasible with only a single connection to the target. So this is a question of
   resources - if the attacker has the resources to surveil all new Hyphanet
-  nodes, he has a good chance of pulling it off. In future we may have more
+  nodes, they have a good chance of pulling it off. In future we may have more
   seednodes, and only reveal a small proportion of them to each node, as Tor
   does with its hidden bridges, but that will not prevent attackers from
   creating lots of malicious seednodes and getting them into the official lists,
@@ -684,7 +684,7 @@ here are the major classes of attack on Hyphanet we are presently aware of:</p>
   one. Using a dedicated identity for posting sensitive content, which doesn't
   chat too much, again will help. Another thing which makes a huge difference is
   connecting only to your friends (i.e. using darknet): This makes it extremely
-  difficult for an attacker to get new connections closer to where he thinks you
+  difficult for an attacker to get new connections closer to where they think you
   must be, just as it helps with correlation attacks. So the biggest problems
   with this attack are 1) Files which are not very popular fall off Hyphanet
   relatively quickly, so need to be reinserted, but it is not safe to reinsert
@@ -694,7 +694,7 @@ here are the major classes of attack on Hyphanet we are presently aware of:</p>
   for predictable keys so can be relatively slow without this causing problems
   in practice. Also there is work going on on various techniques to allow users
   to do reinserts safely via for example preventing the attacker from seeing
-  requests started before he connected. Another important point is this only
+  requests started before they connected. Another important point is this only
   works if the source is uploading new content, or chatting, regularly; creating
   and bootstrapping a new pseudonymous identity over a short period, doing a
   single insert (of any size) with the safe random key option, and announcing
@@ -746,7 +746,7 @@ any significant way. Nonetheless, you have a reasonably low bandwidth
 multiplier (the total number of nodes visited, around 20 on average), and you
 are severely limited by the number of nodes you can connect to, which will be
 low on a darknet.</p>
-<h3 id="why-hash-keys-and-encrypt-data-when-a-node-operator-could-identify-them-the-data-anyway-if-he-tried">Why hash keys and encrypt data when a node operator could identify them (the data) anyway if he tried?</h3>
+<h3 id="why-hash-keys-and-encrypt-data-when-a-node-operator-could-identify-them-the-data-anyway-if-they-tried">Why hash keys and encrypt data when a node operator could identify them (the data) anyway if they tried?</h3>
 <p>Hashing the key and encrypting the data is not meant a method to keep Hyphanet
 Node operators from being able to figure out what type of information is in
 their nodes if they really want to (after all, they can just find the key in
@@ -776,8 +776,8 @@ discussed for some time now. Several have been implemented (enforcing hashes
 or signatures on content, per node failure tables, backing off from a node
 that causes timeouts ...)</p>
 <h3 id="what-about-attack-y">What about attack Y?</h3>
-<p>Hyphanet is still in testing and there are bound to be attacks found that we
-have not dealt with yet. So if you do manage to figure out a truly new kind
+<p>Complex software free from security vulnerabilities is essentially impossible, and there are bound to be attacks that we
+are unaware of or have not yet been able to prevent. If you believe you have discovered a new kind
 of attack, we are interested in hearing about it. Please keep in mind what
 Hyphanet is and what it is not, however. No single network can offer everybody
 everything, and there are security issues that Hyphanet, by its nature,
@@ -843,10 +843,9 @@ files.</p>
 <p><a href="http://windows.microsoft.com/en-us/windows7/smartscreen-filter-frequently-asked-questions-ie9">SmartScreen</a> is sometimes incorrect in classifying a file as dangerous.
 We believe our installer is not infected with malicious software, and if you are a developer you can check the installer source code <a href="https://github.com/freenet/wininstaller-innosetup">here</a>.</p>
 <h3 id="has-anyone-ever-faced-legal-trouble-for-their-anonymous-activities-conducted-on-hyphanet">Has anyone ever faced legal trouble for their anonymous activities conducted on Hyphanet?</h3>
-<p>Yes.
-There is one such instance that we know of.
-United States law enforcement can identify anonymous users of <a href="http://www.thedickinsonpress.com/news/north-dakota/3885239-predators-police-online-struggle">Hyphanet</a> and <a href="http://motherboard.vice.com/read/court-docs-show-a-university-helped-fbi-bust-silk-road-2-child-porn-suspects">Tor</a>.
-Without further information we do not know how they did this, but we suspect it affects people using the network security level "normal" or lower.
+<p>Yes. We do know of some such instances.</p>
+<p>United States law enforcement can identify anonymous users of <a href="http://www.thedickinsonpress.com/news/north-dakota/3885239-predators-police-online-struggle">Hyphanet</a> and <a href="http://motherboard.vice.com/read/court-docs-show-a-university-helped-fbi-bust-silk-road-2-child-porn-suspects">Tor</a>.
+We have <a href="the-discredited-levine-2017-approach-is-still-used.html">some information about the techniques used</a>, and we suspect it primarily affects people using the network security level "normal" or lower.
 It is reasonable to assume that other governments have access to the same technology, which is provided by private contractors.
 If you are concerned about governments, you should use Hyphanet's capacity to connect only to users you trust, ("high" network security level or higher) and bear in mind that no anonymity technology provides perfect protection.</p>
 <p>While we applaud law enforcement's apparent success in apprehending suspects allegedly sharing child abuse images, any security flaws they may have used are not limited to such noble usage.
