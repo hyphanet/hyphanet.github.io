@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet - misc</title><link href="https://hyphanet.org/" rel="alternate"></link><link href="https://hyphanet.org/feeds/misc.atom.xml" rel="self"></link><id>https://hyphanet.org/</id><updated>2023-06-26T00:00:00+02:00</updated><entry><title>Freenet renamed to Hyphanet</title><link href="https://hyphanet.org/freenet-renamed-to-hyphanet.html" rel="alternate"></link><published>2023-06-26T00:00:00+02:00</published><updated>2023-06-26T00:00:00+02:00</updated><author><name>Steve Dougherty</name></author><id>tag:hyphanet.org,2023-06-26:/freenet-renamed-to-hyphanet.html</id><summary type="html">&lt;p&gt;In early 2023, the board of Freenet Project, Inc - a nonprofit that started
-in 2002 and began development of Freenet in 2005 - decided to rename its project Locutus to "Freenet." This
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet - misc</title><link href="https://hyphanet.org/" rel="alternate"></link><link href="https://hyphanet.org/feeds/misc.atom.xml" rel="self"></link><id>https://hyphanet.org/</id><updated>2023-06-26T00:00:00+02:00</updated><entry><title>Freenet renamed to Hyphanet</title><link href="https://hyphanet.org/freenet-renamed-to-hyphanet.html" rel="alternate"></link><published>2023-06-26T00:00:00+02:00</published><updated>2023-06-26T00:00:00+02:00</updated><author><name>Steve Dougherty</name></author><id>tag:hyphanet.org,2023-06-26:/freenet-renamed-to-hyphanet.html</id><summary type="html">&lt;p&gt;In early 2023, the board of Freenet Project, Inc - the nonprofit that started
+work in 1999 - decided to rename its new project Locutus to "Freenet." This
 required that Freenet change its name. Locutus began development in 2019, and
-has different design priorities.&lt;/p&gt;
-&lt;p&gt;As part of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In early 2023, the board of Freenet Project, Inc - a nonprofit that started
-in 2002 and began development of Freenet in 2005 - decided to rename its project Locutus to "Freenet." This
+has different design priorities. Freenet began development in 1999.&lt;/p&gt;
+&lt;p&gt;As part of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In early 2023, the board of Freenet Project, Inc - the nonprofit that started
+work in 1999 - decided to rename its new project Locutus to "Freenet." This
 required that Freenet change its name. Locutus began development in 2019, and
-has different design priorities.&lt;/p&gt;
-&lt;p&gt;As part of the renaming process, after community suggestions and voting, we
+has different design priorities. Freenet began development in 1999.&lt;/p&gt;
+&lt;p&gt;As part of the renaming process, following community suggestions and voting, we
 chose the name Hyphanet after a &lt;a href="https://en.wikipedia.org/wiki/Mycorrhizal_network"&gt;mycorrhizal network&lt;/a&gt;. Hyphae join with
 plant roots to form connections between fungi, and allow underground
 communication between trees in a forest.&lt;/p&gt;
 &lt;p&gt;We've done our best to ensure that old links still work, and that images and
 whatnot aren't broken after applying the name change to this website, but if we
 missed something, please &lt;a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet"&gt;let us know&lt;/a&gt;!&lt;/p&gt;
-&lt;p&gt;For more information, see the &lt;a href="https://www.mail-archive.com/devl@freenetproject.org/msg55262.html"&gt;mailing list announcement&lt;/a&gt;.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Freenet build 1497: fix severe path folding vulnerability</title><link href="https://hyphanet.org/freenet-build-1497-fix-severe-path-folding-vulnerability.html" rel="alternate"></link><published>2023-03-04T00:00:00+01:00</published><updated>2023-03-04T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:hyphanet.org,2023-03-04:/freenet-build-1497-fix-severe-path-folding-vulnerability.html</id><summary type="html">&lt;p&gt;Freenet 0.7.5 build 1497 is now available.&lt;/p&gt;
+&lt;p&gt;For more information, see the &lt;a href="https://www.mail-archive.com/devl@freenetproject.org/msg55262.html"&gt;mailing list announcement thread&lt;/a&gt;.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Freenet build 1497: fix severe path folding vulnerability</title><link href="https://hyphanet.org/freenet-build-1497-fix-severe-path-folding-vulnerability.html" rel="alternate"></link><published>2023-03-04T00:00:00+01:00</published><updated>2023-03-04T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:hyphanet.org,2023-03-04:/freenet-build-1497-fix-severe-path-folding-vulnerability.html</id><summary type="html">&lt;p&gt;Freenet 0.7.5 build 1497 is now available.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Install Freenet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01496/FreenetInstaller-1497.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01497/new_installer_offline_1497.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms.&lt;/p&gt;
 &lt;/blockquote&gt;
