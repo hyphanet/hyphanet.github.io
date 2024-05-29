@@ -564,7 +564,7 @@ video-on-demand over Freenet a good match for conference-talks like
 those from 36c3:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Streaming 36c3 over Freenet" src="https://www.hyphanet.org/ru/assets/img/2021-11-04-streaming-36c3-over-freenet.png" /&gt;&lt;/p&gt;
 &lt;p&gt;(license: &lt;a href="https://creativecommons.org/licenses/by/4.0/"&gt;creativecommons attribution 4.0 international&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;The &lt;a href="https://hg.sr.ht/~arnebab/guile-media-site/"&gt;guile media site&lt;/a&gt;
+&lt;p&gt;The &lt;a href="https://hg.sr.ht/~arnebab/guile-media-site"&gt;guile media site&lt;/a&gt;
 repository provides a tool to create your own streaming site that is
 hosted decentrally and with good privacy protections within Freenet.&lt;/p&gt;
 &lt;p&gt;While publishing this is not as simple as uploading a video to a
