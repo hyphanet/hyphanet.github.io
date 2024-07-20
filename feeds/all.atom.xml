@@ -12,7 +12,7 @@ testing of the signing infrastructure.&lt;/p&gt;
 &lt;div style="float: right; width: 30%; max-width: 300px;"&gt;&lt;img src="./theme/images/logo-large.png" width="100%" style="filter: invert(30%)"  /&gt;&lt;/div&gt;
 
 &lt;p&gt;Windows installers have to be signed to avoid triggering warning
-messages. Due to the &lt;a href="(/freenet-renamed-to-hyphanet.html)"&gt;forced renaming&lt;/a&gt; we have to establish a
+messages. Due to the &lt;a href="(/freenet-renamed-to-hyphanet.html"&gt;forced renaming&lt;/a&gt; we have to establish a
 &lt;a href="https://github.com/hyphanet/sign-windows-installer/blob/main/.github/workflows/ci.yml"&gt;new signing workflow&lt;/a&gt; with a new signature provider.&lt;/p&gt;
 &lt;p&gt;The new signature provider has a higher standard of security. This is
 something we cherish, because the signing pipeline we built for that
