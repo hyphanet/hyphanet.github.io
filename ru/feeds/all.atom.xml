@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet</title><link href="https://www.hyphanet.org/ru/" rel="alternate"></link><link href="https://www.hyphanet.org/feeds/all.atom.xml" rel="self"></link><id>https://www.hyphanet.org/ru/</id><updated>2024-09-23T00:00:00+02:00</updated><entry><title>Freenet / Hyphanet build 1498: Debian Package, Optimized Networking Layer, Richer Websites, UX, Safety</title><link href="https://www.hyphanet.org/ru/freenet-hyphanet-build-1498-debian-package-optimized-networking-layer-richer-websites-ux-safety.html" rel="alternate"></link><published>2024-09-23T00:00:00+02:00</published><updated>2024-09-23T00:00:00+02:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2024-09-23:/ru/freenet-hyphanet-build-1498-debian-package-optimized-networking-layer-richer-websites-ux-safety.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1498 is now available.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01498/FreenetInstaller-1498.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01498/new_installer_offline_1498.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01498/FreenetInstaller-1498.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01498/new_installer_offline_1498.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This release resolves the last blocker for Freenet / Hyphanet 0.8 by
-providing an &lt;a href="https://www.draketo.de/dateien/freenet/build01498/hyphanet-fred-build01498.deb"&gt;official …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1498 is now available.&lt;/p&gt;
+&lt;p&gt;This release resolves the last blocker for Freenet …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1498 is now available.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01498/FreenetInstaller-1498.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01498/new_installer_offline_1498.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01498/FreenetInstaller-1498.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01498/new_installer_offline_1498.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This release resolves the last blocker for Freenet / Hyphanet 0.8 by
 providing an &lt;a href="https://www.draketo.de/dateien/freenet/build01498/hyphanet-fred-build01498.deb"&gt;official Debian package&lt;/a&gt;. Additionally it optimizes the
@@ -17,7 +16,7 @@ website authors and user experience.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;provide a debian package&lt;/li&gt;
-&lt;li&gt;optimizes the networking and data transfer core&lt;/li&gt;
+&lt;li&gt;optimize the networking and data transfer core&lt;/li&gt;
 &lt;li&gt;more possibilities for website authors&lt;/li&gt;
 &lt;li&gt;improve the user experience&lt;/li&gt;
 &lt;li&gt;validated Windows installer signing workflow&lt;/li&gt;

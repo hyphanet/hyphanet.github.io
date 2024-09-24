@@ -136,6 +136,7 @@ not work, unless you install additional software packages and configure it.
 You can start Hyphanet manually there, but you then don’t have
 auto-updates. After installation you find the relevant classpath
 arguments in wrapper.conf. Then call java directly with a command like <code>java -Xmx1500m -Xss512k -Dnetworkaddress.cache.ttl=0 -Dnetworkaddress.cache.negative.ttl=0 --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED  -cp bcprov-jdk15on-1.59.jar:freenet-ext.jar:freenet.jar:jna-4.5.2.jar:jna-platform-4.5.2.jar:pebble-3.1.5.jar:unbescape-1.1.6.RELEASE.jar:slf4j-api-1.7.25.jar freenet.node.NodeStarter</code></p>
+<p><strong>Note</strong>: <em>Apple Silicon</em> needs library updates to work, so you’ll have to download and use a new version of jna….jar and jna-platform….jar in the command above.</p>
 <h2 id="release-mirror">Release Mirror</h2>
 <p>Our releases are provided via Lysator. You can try the
 <a href="https://ftp.lysator.liu.se/pub/freenet/">http mirror</a> or the <a href="http://lysator7eknrfl47rlyxvgeamrv7ucefgrrlhk7rouv3sna25asetwid.onion/pub/freenet/">tor mirror</a> 
