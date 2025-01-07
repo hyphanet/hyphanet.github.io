@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet - misc</title><link href="https://www.hyphanet.org/ru/" rel="alternate"></link><link href="https://www.hyphanet.org/feeds/misc.atom.xml" rel="self"></link><id>https://www.hyphanet.org/ru/</id><updated>2024-12-28T00:00:00+01:00</updated><entry><title>Freenet / Hyphanet build 1499: privacy, networking, css, UX, cleanups</title><link href="https://www.hyphanet.org/ru/freenet-hyphanet-build-1499-privacy-networking-css-ux-cleanups.html" rel="alternate"></link><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2024-12-28:/ru/freenet-hyphanet-build-1499-privacy-networking-css-ux-cleanups.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1499 is now available.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet - misc</title><link href="https://www.hyphanet.org/ru/" rel="alternate"></link><link href="https://www.hyphanet.org/feeds/misc.atom.xml" rel="self"></link><id>https://www.hyphanet.org/ru/</id><updated>2025-01-06T00:00:00+01:00</updated><entry><title>1499 installer re-released</title><link href="https://www.hyphanet.org/ru/1499-installer-re-released.html" rel="alternate"></link><published>2025-01-06T00:00:00+01:00</published><updated>2025-01-06T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-01-06:/ru/1499-installer-re-released.html</id><summary type="html">&lt;p&gt;The Windows Installer for Freenet / Hyphanet 0.7.5 build 1499 has been re-released&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01499/FreenetInstaller-1499.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01499/new_installer_offline_1499.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div style="float: right; width: 30%; max-width: 300px;"&gt;&lt;img src="./theme/images/logo-large.png" width="100%" style="filter: invert(30%)"  /&gt;&lt;/div&gt;
+
+&lt;p&gt;The Windows installer for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The Windows Installer for Freenet / Hyphanet 0.7.5 build 1499 has been re-released&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01499/FreenetInstaller-1499.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01499/new_installer_offline_1499.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div style="float: right; width: 30%; max-width: 300px;"&gt;&lt;img src="./theme/images/logo-large.png" width="100%" style="filter: invert(30%)"  /&gt;&lt;/div&gt;
+
+&lt;p&gt;The Windows installer for 1499 had a regression that caused it to lack
+dependencies. The reason was a mistake in updating the Gradle build
+file of the installer so the dependencies were not properly read from
+the main project.&lt;/p&gt;
+&lt;p&gt;This only affects new installs: auto-update should cause no problems.
+Installing on GNU/Linux/macOS/*nix is unaffected.&lt;/p&gt;
+&lt;p&gt;The Windows installer has been re-released and the downloads are
+fixed.&lt;/p&gt;
+&lt;p&gt;There is a remaining regression in 1499 that can cause high CPU load
+on pure friend-to-friend nodes. It will soon be fixed in an emergency
+build 1500 release.&lt;/p&gt;
+&lt;p&gt;We’re sorry for inconvenience this causes.&lt;/p&gt;
+&lt;div style="clear: both"&gt;&lt;/div&gt;
+
+&lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Join our core.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you want to help us get better, please chat with us in &lt;a href="https://web.libera.chat/?nick=Rabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And give us time to answer, we’re all volunteers and might not be in your timezone. It already helps a lot if you try out our test releases on a platform you use.&lt;/p&gt;
+&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/hyphanet/wiki/wiki/Projects"&gt;Freenet / Hyphanet Projects&lt;/a&gt; or just get &lt;a href="https://github.com/hyphanet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
+&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In addition to coding, spreading Hyphanet, joining the community, writing a decentralized website, and other ways to contribute within Hyphanet, you can join the awesome team of translators &lt;a href="https://explore.transifex.com/otf/freenet/"&gt;at transifex&lt;/a&gt;. They are the reason why we’re able to support several different languages, the often unseen heroes who make our work accessible to those who need it the most.&lt;/p&gt;
+&lt;h2 id="what-is-freenet-hyphanet"&gt;What is Freenet / Hyphanet?&lt;/h2&gt;
+&lt;p&gt;Hyphanet is the original Freenet,&lt;br /&gt;
+a peer-to-peer platform for&lt;br /&gt;
+censorship-resistant and privacy-respecting&lt;br /&gt;
+publishing and communication.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I worry about my child and the Internet all the time, even though
+she's too young to have logged on yet. Here's what I worry about. I
+worry that 10 or 15 years from now, she will come to me and say
+'Daddy, where were you when they took freedom of the press away from
+the Internet? --Mike Godwin, Electronic Frontier Foundation&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;What about the name „Hyphanet“? See &lt;a href="https://www.hyphanet.org/freenet-renamed-to-hyphanet.html"&gt;Freenet renamed to Hyphanet&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That Hyphanet can keep moving forward and help people worldwide to
+exercise their basic rights and freedoms is the work of amazing
+volunteers, both contributors and people running Hyphanet nodes.&lt;/p&gt;
+&lt;p&gt;Thank you for your contributions, and thank you for using Freenet / Hyphanet!&lt;/p&gt;
+&lt;p&gt;-- AB&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01499/FreenetInstaller-1499.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01499/new_installer_offline_1499.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms.&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="misc"></category></entry><entry><title>Freenet / Hyphanet build 1499: privacy, networking, css, UX, cleanups</title><link href="https://www.hyphanet.org/ru/freenet-hyphanet-build-1499-privacy-networking-css-ux-cleanups.html" rel="alternate"></link><published>2024-12-28T00:00:00+01:00</published><updated>2024-12-28T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2024-12-28:/ru/freenet-hyphanet-build-1499-privacy-networking-css-ux-cleanups.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1499 is now available.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01499/FreenetInstaller-1499.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01499/new_installer_offline_1499.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
 &lt;/blockquote&gt;
