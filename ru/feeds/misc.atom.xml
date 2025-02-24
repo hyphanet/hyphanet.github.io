@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet - misc</title><link href="https://www.hyphanet.org/ru/" rel="alternate"></link><link href="https://www.hyphanet.org/feeds/misc.atom.xml" rel="self"></link><id>https://www.hyphanet.org/ru/</id><updated>2025-01-13T00:00:00+01:00</updated><entry><title>Freenet / Hyphanet build 1500: hotfixes and polish</title><link href="https://www.hyphanet.org/ru/freenet-hyphanet-build-1500-hotfixes-and-polish.html" rel="alternate"></link><published>2025-01-13T00:00:00+01:00</published><updated>2025-01-13T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-01-13:/ru/freenet-hyphanet-build-1500-hotfixes-and-polish.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1500 is now available.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet - misc</title><link href="https://www.hyphanet.org/ru/" rel="alternate"></link><link href="https://www.hyphanet.org/feeds/misc.atom.xml" rel="self"></link><id>https://www.hyphanet.org/ru/</id><updated>2025-02-22T00:00:00+01:00</updated><entry><title>Freenet / Hyphanet build 1501: address performance regression and merged PRs</title><link href="https://www.hyphanet.org/ru/freenet-hyphanet-build-1501-address-performance-regression-and-merged-prs.html" rel="alternate"></link><published>2025-02-22T00:00:00+01:00</published><updated>2025-02-22T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-02-22:/ru/freenet-hyphanet-build-1501-address-performance-regression-and-merged-prs.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1501 is now available.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The main purpose of this release is to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1501 is now available.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The main purpose of this release is to address a regression in backoff.&lt;/p&gt;
+&lt;p&gt;Build 1500 fixed the regression that caused very high CPU load in 1499, but the backoff was still far higher than with build 1498.&lt;/p&gt;
+&lt;div style="float: right; width: 30%; max-width: 300px;"&gt;&lt;img src="./theme/images/logo-large.png" width="100%" style="filter: invert(30%)"  /&gt;&lt;/div&gt;
+
+&lt;p&gt;The regression came from handling a bulk request with 10% probability if there is a realtime request.
+This was a fix for very fast nodes. Previously high rates of realtime requests could starve the bulk requests.
+But the change caused higher backoff, because the fraction of bulk requests and average delays for realtime requests increased.&lt;/p&gt;
+&lt;p&gt;In addition, a bugfix to slow request handling had caused nodes to actually back off (pause their requests) when bulk requests became too slow.
+This was erroneously ignored before.&lt;/p&gt;
+&lt;p&gt;Both changes together caused fluctuating backoff that also showed up in the fetchpull stats as doubled latency:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Request latency for 1MiB files tracked over time with averages for files uploaded the same day, files uploaded one day before, and files uploaded 32 days before" src="https://www.hyphanet.org/ru/assets/img/2025-02-22-fetchpull-get-bulk.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The fix is to reduce the probability to choose bulk instead of realtime to 2%
+and to remove an artificial minimum for the retransmission timeout.
+This should speed up request handling and reduce backoff.
+And reduced backoff increases the efficiency of routing.&lt;/p&gt;
+&lt;p&gt;We could track down the issue and test improvements mainly thanks to testing by max_iops. Thank you!&lt;/p&gt;
+&lt;p&gt;In addition to addressing the regression we merged safe improvements
+people had submitted in the meantime:&lt;/p&gt;
+&lt;p&gt;Code and performance improvements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;avoid reflection and global synchronized in fileutils and use NIO for improved performance. Thanks to bertm!&lt;/li&gt;
+&lt;li&gt;use the java 8 datetime utils and remove the deprecated Calendar. Thanks to bertm!&lt;/li&gt;
+&lt;li&gt;only log errors for invalid recently failed values if those values are invalid in all supported versions.&lt;/li&gt;
+&lt;li&gt;split up parsing peers to be easier to understand&lt;/li&gt;
+&lt;li&gt;improve crypt tests that fail in Gradle on some Java versions but not in IntelliJ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Freesite UI:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;enable using CSS properties border-block/inline-start/end-color/style/width, border-end/start-end/start-radius. Thanks to torusrxxx!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Bugfixes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fix usk date hints: failed for a week spanning over two years. Thanks to bertm!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thank you for using Hyphanet!&lt;/p&gt;
+&lt;div style="clear: both"&gt;&lt;/div&gt;
+
+&lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Join our core.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you want to help us get better, please chat with us in &lt;a href="https://web.libera.chat/?nick=Rabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And give us time to answer, we’re all volunteers and might not be in your timezone.&lt;/p&gt;
+&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/hyphanet/wiki/wiki/Projects"&gt;Freenet / Hyphanet Projects&lt;/a&gt; or just get &lt;a href="https://github.com/hyphanet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
+&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In addition to coding, spreading Hyphanet, joining the community, writing a decentralized website, and other ways to contribute within Hyphanet, you can join the awesome team of translators &lt;a href="https://explore.transifex.com/otf/freenet/"&gt;at transifex&lt;/a&gt;. They are the reason why we’re able to support several different languages, the often unseen heroes who make our work accessible to those who need it the most.&lt;/p&gt;
+&lt;h2 id="what-is-freenet-hyphanet"&gt;What is Freenet / Hyphanet?&lt;/h2&gt;
+&lt;p&gt;Hyphanet is the original Freenet,&lt;br /&gt;
+a peer-to-peer platform for&lt;br /&gt;
+censorship-resistant and privacy-respecting&lt;br /&gt;
+publishing and communication.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I worry about my child and the Internet all the time, even though
+she's too young to have logged on yet. Here's what I worry about. I
+worry that 10 or 15 years from now, she will come to me and say
+'Daddy, where were you when they took freedom of the press away from
+the Internet? --Mike Godwin, Electronic Frontier Foundation&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;What about the name „Hyphanet“? See &lt;a href="https://www.hyphanet.org/freenet-renamed-to-hyphanet.html"&gt;Freenet renamed to Hyphanet&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That Hyphanet can keep moving forward and help people worldwide to
+exercise their basic rights and freedoms is the work of amazing
+volunteers, both contributors and people running Hyphanet nodes.&lt;/p&gt;
+&lt;p&gt;Thank you for your contributions, and thank you for using Freenet / Hyphanet!&lt;/p&gt;
+&lt;p&gt;-- AB&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms.&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="misc"></category></entry><entry><title>Freenet / Hyphanet build 1500: hotfixes and polish</title><link href="https://www.hyphanet.org/ru/freenet-hyphanet-build-1500-hotfixes-and-polish.html" rel="alternate"></link><published>2025-01-13T00:00:00+01:00</published><updated>2025-01-13T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-01-13:/ru/freenet-hyphanet-build-1500-hotfixes-and-polish.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1500 is now available.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01500/FreenetInstaller-1500.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01500/new_installer_offline_1500.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -479,8 +550,8 @@ strangers to normal.&lt;/p&gt;
 &lt;p&gt;This should get fixed in 1497.&lt;/p&gt;
 &lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
 &lt;p&gt;If you want to help us get better, please chat with us in &lt;a href="https://web.libera.chat/?nick=Rabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And give us time to answer, we’re all volunteers and might not be in your timezone.&lt;/p&gt;
-&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/freenet/wiki/wiki/Projects"&gt;Freenet-Projects&lt;/a&gt; or just get &lt;a href="https://github.com/freenet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
-&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/freenet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/hyphanet/wiki/wiki/Projects"&gt;Freenet-Projects&lt;/a&gt; or just get &lt;a href="https://github.com/hyphanet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
+&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="what-is-freenet"&gt;What is Freenet?&lt;/h2&gt;
 &lt;p&gt;Freenet is a peer-to-peer platform for&lt;br /&gt;
 censorship-resistant and privacy-respecting&lt;br /&gt;
@@ -560,7 +631,7 @@ load on very fast nodes with many peers.&lt;/p&gt;
   gotten lost in the pull requests. This provides an easy and
   well-tested way to create and verify different types of Hashes from byte
   arrays, including Sha256 and TigerTree.
-  https://github.com/freenet/fred/pull/258&lt;/li&gt;
+  https://github.com/hyphanet/fred/pull/258&lt;/li&gt;
 &lt;li&gt;merged announcement fixes by toad&lt;/li&gt;
 &lt;li&gt;upgraded unit tests to junit4, thanks to vwoodzell!&lt;/li&gt;
 &lt;li&gt;fixed the client getter method to honor the max size argument&lt;/li&gt;
@@ -570,8 +641,8 @@ for getting this release in shape!&lt;/p&gt;
 &lt;p&gt;And thank you for using Freenet!&lt;/p&gt;
 &lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
 &lt;p&gt;If you want to help us get better, please chat with us in &lt;a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And give us time to answer, we’re all volunteers and might not be in your timezone.&lt;/p&gt;
-&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/freenet/wiki/wiki/Projects"&gt;Freenet-Projects&lt;/a&gt; or just get &lt;a href="https://github.com/freenet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
-&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/freenet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/hyphanet/wiki/wiki/Projects"&gt;Freenet-Projects&lt;/a&gt; or just get &lt;a href="https://github.com/hyphanet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
+&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="what-is-freenet"&gt;What is Freenet?&lt;/h2&gt;
 &lt;p&gt;Freenet is a peer-to-peer platform for&lt;br /&gt;
 censorship-resistant and privacy-respecting&lt;br /&gt;
@@ -783,8 +854,8 @@ $ apt install freenet
 &lt;p&gt;Two new tools simplify publishing media in Freenet and using freenet
 with stronger protections.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/generate-media-site/"&gt;Generate Media Site&lt;/a&gt; is a utility to create sites with streaming media on demand.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/browser/"&gt;freenetbrowser&lt;/a&gt; auto-generates a separate browser-profile on GNU/Linux and can install a Freenet node with randomized IP and Port, preventing port detection (for example by unsafe local services).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/generate-media-site/"&gt;Generate Media Site&lt;/a&gt; is a utility to create sites with streaming media on demand.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/browser/"&gt;freenetbrowser&lt;/a&gt; auto-generates a separate browser-profile on GNU/Linux and can install a Freenet node with randomized IP and Port, preventing port detection (for example by unsafe local services).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;After installing &lt;code&gt;freenetbrowser&lt;/code&gt; (see the README), you can visit the example page for generate media site with:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;freenetbrowser --install USK@rQnuHCVpf7BHcsZHBt911K3-iaELN1u1Vg0fzxDRq7k,I1vFYWONhGfECHr9XD-1lKxxstr64rF4dTykcMq9swY,AQACAAE/gms/11/
@@ -797,8 +868,8 @@ for getting this release in shape!&lt;/p&gt;
 &lt;p&gt;And thank you for using Freenet!&lt;/p&gt;
 &lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
 &lt;p&gt;If you want to help us get better, please chat with us in &lt;a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And give us time to answer, we’re all volunteers and might not be in your timezone.&lt;/p&gt;
-&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/freenet/wiki/wiki/Projects"&gt;Freenet-Projects&lt;/a&gt; or just get &lt;a href="https://github.com/freenet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
-&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/freenet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/hyphanet/wiki/wiki/Projects"&gt;Freenet-Projects&lt;/a&gt; or just get &lt;a href="https://github.com/hyphanet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
+&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="what-is-freenet"&gt;What is Freenet?&lt;/h2&gt;
 &lt;p&gt;Freenet is a peer-to-peer platform for&lt;br /&gt;
 censorship-resistant and privacy-respecting&lt;br /&gt;
@@ -892,8 +963,8 @@ texts in Freenet that we can ship the new versions. Thank you
 very much!&lt;/p&gt;
 &lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
 &lt;p&gt;If you want to help us get better, please chat with us in &lt;a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And give us time to answer, we’re all volunteers and might not be in your timezone.&lt;/p&gt;
-&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/freenet/wiki/wiki/Projects"&gt;Freenet-Projects&lt;/a&gt; or just get &lt;a href="https://github.com/freenet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
-&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/freenet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/hyphanet/wiki/wiki/Projects"&gt;Freenet-Projects&lt;/a&gt; or just get &lt;a href="https://github.com/hyphanet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
+&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="what-is-freenet"&gt;What is Freenet?&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Freenet is a peer-to-peer platform for&lt;br /&gt;
@@ -934,7 +1005,7 @@ that could disrupt its high-security friend-to-friend mode.&lt;/p&gt;
 &lt;p&gt;With this release, &lt;strong&gt;the pitch black attack is mitigated&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;If you decided not to use Freenet in the past because you knew about
 the pitch black attack, now is a great time to give Freenet another try!&lt;/p&gt;
-&lt;p&gt;This finalizes the mitigation &lt;a href="https://github.com/freenet/fred/pull/736"&gt;with a test&lt;/a&gt;
+&lt;p&gt;This finalizes the mitigation &lt;a href="https://github.com/hyphanet/fred/pull/736"&gt;with a test&lt;/a&gt;
 that shows that it is effective at reducing the impact of the attack
 and recovering from it:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Average peer location during an ongoing Pitch Black Attack with the mitigation in place" src="https://www.hyphanet.org/ru/assets/img/2021-11-04-pitch-black-mitigation-ongoing-attack.png" /&gt;&lt;/p&gt;
@@ -994,8 +1065,8 @@ performance bottlenecks.&lt;/p&gt;
 &lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
 &lt;p&gt;If you want to help us get better, please help us get the current
 pending pull-requests in shape for merging, by reviewing and/or by
-improving already reviewed but &lt;a href="https://github.com/freenet/wiki/wiki/Large-Pull-requests-that-need-work"&gt;inactive pull-requests&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We now also have a list of &lt;a href="https://github.com/freenet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
+improving already reviewed but &lt;a href="https://github.com/hyphanet/wiki/wiki/Large-Pull-requests-that-need-work"&gt;inactive pull-requests&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We now also have a list of &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To join in, please come to  &lt;a href="https://web.libera.chat/?nick=FollowRabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And please give us time to answer, we’re all volunteers and might not be in your timezone.&lt;/p&gt;
 &lt;h2 id="what-is-freenet"&gt;What is Freenet?&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -1023,41 +1094,41 @@ software to make a difference.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;The diagnostics component provides thread runtime statistics. Thanks to DC*.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/fred/pull/727"&gt;https://github.com/freenet/fred/pull/727&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/pull/727"&gt;https://github.com/hyphanet/fred/pull/727&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;The multi-node test to show that the mitigation against the pitch
   black attack works.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/fred/pull/736"&gt;https://github.com/freenet/fred/pull/736&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/pull/736"&gt;https://github.com/hyphanet/fred/pull/736&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;The m3u-player for video on demand over Freenet now prevents most
   visual flickering.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/fred/pull/734"&gt;https://github.com/freenet/fred/pull/734&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/pull/734"&gt;https://github.com/hyphanet/fred/pull/734&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Clickable labels for checkboxes. Thanks to AC4BB21B.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/fred/pull/741"&gt;https://github.com/freenet/fred/pull/741&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/pull/741"&gt;https://github.com/hyphanet/fred/pull/741&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Fix: skip in support.io.SkipShieldingInputStream must return
   non-negative. Thanks to dennisnez.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/fred/pull/737"&gt;https://github.com/freenet/fred/pull/737&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/pull/737"&gt;https://github.com/hyphanet/fred/pull/737&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Fix: NodeConfig was reading a particular config from default on every
   start up. Thanks to desyncr.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/fred/pull/739"&gt;https://github.com/freenet/fred/pull/739&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/pull/739"&gt;https://github.com/hyphanet/fred/pull/739&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;OpenJDK 16+ compat: add wrapper.conf argument to allow access to
   internal openjdk modules.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/fred/pull/740"&gt;https://github.com/freenet/fred/pull/740&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/pull/740"&gt;https://github.com/hyphanet/fred/pull/740&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Fix: Correct "current size" option in Wizard =&amp;gt; datastore size. Thanks to
 AC4BB21B.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/fred/pull/742"&gt;https://github.com/freenet/fred/pull/742&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/pull/742"&gt;https://github.com/hyphanet/fred/pull/742&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Plugins:&lt;/p&gt;
@@ -1067,30 +1138,30 @@ AC4BB21B.&lt;br /&gt;
   Fix API call to allow compiling, and&lt;br /&gt;
   Fix extra bytes display for composed SSK.&lt;br /&gt;
   both thanks to TheSeeker.&lt;br /&gt;
-&lt;a href="https://github.com/freenet/plugin-KeyUtils/pull/17"&gt;https://github.com/freenet/plugin-KeyUtils/pull/17&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://github.com/freenet/plugin-KeyUtils/pull/16"&gt;https://github.com/freenet/plugin-KeyUtils/pull/16&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/plugin-KeyUtils/pull/17"&gt;https://github.com/hyphanet/plugin-KeyUtils/pull/17&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/hyphanet/plugin-KeyUtils/pull/16"&gt;https://github.com/hyphanet/plugin-KeyUtils/pull/16&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Library:&lt;br /&gt;
   search with unchecked boxes thanks to redwerk&lt;br /&gt;
-&lt;a href="https://github.com/freenet/plugin-Library/pull/14"&gt;https://github.com/freenet/plugin-Library/pull/14&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/hyphanet/plugin-Library/pull/14"&gt;https://github.com/hyphanet/plugin-Library/pull/14&lt;/a&gt;&lt;br /&gt;
   custom index docname thanks to TheSeeker&lt;br /&gt;
-&lt;a href="https://github.com/freenet/plugin-Library/pull/18"&gt;https://github.com/freenet/plugin-Library/pull/18&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/plugin-Library/pull/18"&gt;https://github.com/hyphanet/plugin-Library/pull/18&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Spider:&lt;br /&gt;
   Fix writing to the bucket and Replace SortedIntSet thanks to redwerks&lt;br /&gt;
-&lt;a href="https://github.com/freenet/plugin-Spider/pull/6"&gt;https://github.com/freenet/plugin-Spider/pull/6&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/plugin-Spider/pull/6"&gt;https://github.com/hyphanet/plugin-Spider/pull/6&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Fix build thanks to Juiceman&lt;br /&gt;
-&lt;a href="https://github.com/freenet/plugin-Spider/pull/5"&gt;https://github.com/freenet/plugin-Spider/pull/5&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/plugin-Spider/pull/5"&gt;https://github.com/hyphanet/plugin-Spider/pull/5&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;FlogHelper&lt;br /&gt;
   Add new media tags in tool menu: audio and video thanks to
   AlexandreRio&lt;br /&gt;
-&lt;a href="https://github.com/freenet/plugin-FlogHelper/pull/19"&gt;https://github.com/freenet/plugin-FlogHelper/pull/19&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/hyphanet/plugin-FlogHelper/pull/19"&gt;https://github.com/hyphanet/plugin-FlogHelper/pull/19&lt;/a&gt;&lt;br /&gt;
   (you can simply set an uploaded m3u file as as source of a video
    and it will show up on your flog as video on demand)&lt;/p&gt;
 &lt;/li&gt;
@@ -1255,7 +1326,7 @@ the one safe change from the let-it-burn patchset:
 Maximum backoff-times are reduced from 3 hours to 8 minutes.
 This might increase bandwidth available.
 Also progresspage.js now has a declared license for &lt;a href="https://www.gnu.org/software/librejs/"&gt;Libre-JS&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01489"&gt;release tag for 1489&lt;/a&gt;.
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01489"&gt;release tag for 1489&lt;/a&gt;.
 You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1268,12 +1339,12 @@ update itself over Freenet.&lt;/p&gt;
 &lt;/ul&gt;</content><category term="misc"></category></entry><entry><title>Freenet build 1488 released</title><link href="https://www.hyphanet.org/ru/freenet-build-1488-released.html" rel="alternate"></link><published>2020-11-14T00:00:00+01:00</published><updated>2020-11-14T00:00:00+01:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2020-11-14:/ru/freenet-build-1488-released.html</id><summary type="html">&lt;p&gt;Freenet 0.7.5 build 1488 is now available.&lt;/p&gt;
 &lt;p&gt;This build improves translations to make Freenet more inviting for 
 people around the world: update French, add Hungarian.&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01488"&gt;release tag for 1488&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01488"&gt;release tag for 1488&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet 0.7.5 build 1488 is now available.&lt;/p&gt;
 &lt;p&gt;This build improves translations to make Freenet more inviting for 
 people around the world: update French, add Hungarian.&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01488"&gt;release tag for 1488&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01488"&gt;release tag for 1488&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1322,7 +1393,7 @@ continuous integration system using a more secure code-signing setup.
 This should reduce the scary warnings on install,
 reduces our dependency on specific setup of the release manager,
 and provides earlier checks whether something in fred broke the installer.&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01487"&gt;release tag for 1487&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01487"&gt;release tag for 1487&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1354,15 +1425,15 @@ detected.&lt;/p&gt;
 certificate which should remove some ugly warnings during
 installation, and thanks to Bombe our SSK and USK key validation is
 now stricter, and our tests now use JUnit 4. And we increased the max
-size for passthrough, so our Windows installer should spread over &lt;a href="https://github.com/freenet/wiki/wiki/Update-Over-Mandatory"&gt;UOM&lt;/a&gt;
+size for passthrough, so our Windows installer should spread over &lt;a href="https://github.com/hyphanet/wiki/wiki/Update-Over-Mandatory"&gt;UOM&lt;/a&gt;
 again.&lt;/p&gt;
 &lt;p&gt;Finally, outside the direct release, but significant: desyncr ported
-Freenet to Android! The new &lt;a href="https://github.com/freenet-mobile/app"&gt;Freenet
+Freenet to Android! The new &lt;a href="https://github.com/hyphanet-mobile/app"&gt;Freenet
 Mobile&lt;/a&gt; is optimized to preserve
 bandwidth and battery power in phones. Find out how to test it &lt;a href="https://www.reddit.com/r/Freenet/comments/i21dca/freenet_mobile_01_beta"&gt;on
 reddit&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Thank you for using Freenet!&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01486"&gt;release tag for 1486&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01486"&gt;release tag for 1486&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1398,7 +1469,7 @@ please disable it for Freenet and use an IME from your Operating System.
 There have been reports of the IME collecting your keystrokes and
 sending them to remote servers.&lt;/p&gt;
 &lt;p&gt;Thank you for using Freenet!&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01485"&gt;release tag for 1485&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01485"&gt;release tag for 1485&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1699,7 +1770,7 @@ the browser since version build 1473 (2016-05-21). You can also use
 mp3s in a HTML5 audio-tag on your freesites (flac not yet).&lt;/p&gt;
 &lt;p&gt;Further changes:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;update WoT plugin to &lt;a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0020"&gt;build 20&lt;/a&gt;, now bundling the database library so it can be removed from Freenet itself and will be easier to update. Thanks to xor.&lt;/li&gt;
+&lt;li&gt;update WoT plugin to &lt;a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0020"&gt;build 20&lt;/a&gt;, now bundling the database library so it can be removed from Freenet itself and will be easier to update. Thanks to xor.&lt;/li&gt;
 &lt;li&gt;replace handler.outputHandler.queue by handler.send - thanks to patheticcockroach.&lt;/li&gt;
 &lt;li&gt;peer list: Add spacing between flag and IP address - thanks to Bombe.&lt;/li&gt;
 &lt;li&gt;increase scaling to 3 again because 1480 nodes otherwise slow down updated nodes.&lt;/li&gt;
@@ -1708,7 +1779,7 @@ mp3s in a HTML5 audio-tag on your freesites (flac not yet).&lt;/p&gt;
 &lt;li&gt;update Sharesite version to 0.4.7 and activate by default.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Thank you for using Freenet!&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01484"&gt;release tag for 1484&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01484"&gt;release tag for 1484&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1734,7 +1805,7 @@ side effects. These builds address them. For the list of remaining
 regressions in 1483, see the &lt;a href="http://bugs.freenetproject.org/view.php?id=7041"&gt;1481 parent bug (7041)&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Thank you for using Freenet!&lt;/p&gt;
 &lt;p&gt;For additional details see the release tag
-&lt;a href="https://github.com/freenet/fred/releases/tag/build01482"&gt;for 1482&lt;/a&gt; and &lt;a href="https://github.com/freenet/fred/releases/tag/build01483"&gt;for 1483&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="https://github.com/hyphanet/fred/releases/tag/build01482"&gt;for 1482&lt;/a&gt; and &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01483"&gt;for 1483&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1761,7 +1832,7 @@ https://en.wikipedia.org/wiki/Bus_factor&lt;/p&gt;
 theme until Winterfacey got more testing. You can test switch between
 themes on Configuration -&amp;gt; Web Interface&lt;/p&gt;
 &lt;p&gt;Thank you for using Freenet!&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01481"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01481"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1774,7 +1845,7 @@ update itself over Freenet.&lt;/p&gt;
 &lt;li&gt;Update Freemail to v0.2.7.3-r2&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Thank you for using Freenet!&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01480"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01480"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet 0.7.5 build 1480 is now available. [overview]&lt;/p&gt;
 &lt;ul&gt;
@@ -1782,7 +1853,7 @@ or if you are …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet 0.7.5
 &lt;li&gt;Update Freemail to v0.2.7.3-r2&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Thank you for using Freenet!&lt;/p&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01480"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01480"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1792,14 +1863,14 @@ update itself over Freenet.&lt;/p&gt;
 &lt;/ul&gt;</content><category term="misc"></category></entry><entry><title>Freenet build 1479 released</title><link href="https://www.hyphanet.org/ru/freenet-build-1479-released.html" rel="alternate"></link><published>2017-11-03T00:00:00+01:00</published><updated>2017-11-03T00:00:00+01:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2017-11-03:/ru/freenet-build-1479-released.html</id><summary type="html">&lt;p&gt;Freenet 0.7.5 build 1479 is now available.&lt;/p&gt;
 &lt;p&gt;This release ships WoT 19 which provides 
 performance and UI improvements. For details
-see the &lt;a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0019"&gt;WoT19 tag&lt;/a&gt;.&lt;/p&gt;
+see the &lt;a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0019"&gt;WoT19 tag&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;update.sh can now provide a failover via clearnet again
 (which was broken when our website SSL certificate
 provider stopped providing SSL certificates),
 but …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet 0.7.5 build 1479 is now available.&lt;/p&gt;
 &lt;p&gt;This release ships WoT 19 which provides 
 performance and UI improvements. For details
-see the &lt;a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0019"&gt;WoT19 tag&lt;/a&gt;.&lt;/p&gt;
+see the &lt;a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0019"&gt;WoT19 tag&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;update.sh can now provide a failover via clearnet again
 (which was broken when our website SSL certificate
 provider stopped providing SSL certificates),
@@ -1833,7 +1904,7 @@ provide better bandwidth utilization for very fast nodes.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;plugins: Freemail v0.2.7.3 (new translations)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For additional details see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01479"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For additional details see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01479"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can download this release as usual from the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt;,
 or if you are already using Freenet, simply let your freenet node
 update itself over Freenet.&lt;/p&gt;
@@ -1843,7 +1914,7 @@ update itself over Freenet.&lt;/p&gt;
 &lt;/ul&gt;</content><category term="misc"></category></entry><entry><title>Freenet infrastructure changes</title><link href="https://www.hyphanet.org/ru/freenet-infrastructure-changes.html" rel="alternate"></link><published>2017-04-05T00:00:00+02:00</published><updated>2017-04-05T00:00:00+02:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2017-04-05:/ru/freenet-infrastructure-changes.html</id><content type="html">&lt;p&gt;We have to do infrastructure changes. This will bring some (hopefully short-term) breakage to the website. Please bear with us. Freenet itself (the network) should be unaffected.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Freenet build 1477 released</title><link href="https://www.hyphanet.org/ru/freenet-build-1477-released.html" rel="alternate"></link><published>2017-03-09T00:00:00+01:00</published><updated>2017-03-09T00:00:00+01:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2017-03-09:/ru/freenet-build-1477-released.html</id><content type="html">&lt;p&gt;Freenet 0.7.5 build 1477 is now available.&lt;/p&gt;
 &lt;p&gt;This fixes two vulnerabilities, one reported by &lt;a href="https://chaoswebs.net/"&gt;beardog108&lt;/a&gt;,
 the other accidentally introduced in 1476.
-For details, see the &lt;a href="https://github.com/freenet/fred/releases/tag/build01477"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
+For details, see the &lt;a href="https://github.com/hyphanet/fred/releases/tag/build01477"&gt;release tag&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Thank you to all involved!&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Freenet build 1476 released</title><link href="https://www.hyphanet.org/ru/freenet-build-1476-released.html" rel="alternate"></link><published>2017-03-01T00:00:00+01:00</published><updated>2017-03-01T00:00:00+01:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2017-03-01:/ru/freenet-build-1476-released.html</id><summary type="html">&lt;p&gt;Freenet 0.7.5 build 1476 is now available.&lt;/p&gt;
 &lt;p&gt;Highlights:&lt;/p&gt;
 &lt;ul&gt;
@@ -1910,7 +1981,7 @@ positive probability decreasing with the number of requests received
 from the node.  This would be true if whether the HTL is
 decremented is decided per request, which has historically been the
 case in the early days of Freenet.  The vulnerability they claim to
-exploit was however addressed in 2008 (last touched in &lt;a href="https://github.com/freenet/fred/commit/4aaa08f11656af1dd857e45612763c9bd2d89fc2"&gt;this
+exploit was however addressed in 2008 (last touched in &lt;a href="https://github.com/hyphanet/fred/commit/4aaa08f11656af1dd857e45612763c9bd2d89fc2"&gt;this
 commit&lt;/a&gt;).  Whether the HTL is decremented is since
 decided per connection, so any probability they claim using the
 aforementioned method is false.&lt;/p&gt;
@@ -1938,7 +2009,7 @@ originating at the node itself, but with significant cost.&lt;/p&gt;
 will not allow finding out with the described method whether HTL 18 requests came from the
 node itself or from the peers connected over
 friend-to-friend connections.&lt;/p&gt;
-&lt;p&gt;For details, see &lt;a href="https://github.com/freenet/fred/blob/next/src/freenet/node/PeerNode.java#L1603"&gt;the code&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For details, see &lt;a href="https://github.com/hyphanet/fred/blob/next/src/freenet/node/PeerNode.java#L1603"&gt;the code&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This does not make it impossible to track Freenet users who use only
 Opennet mode (connecting to strangers), since a network where nodes
 connect to strangers is inherently susceptible to Sybil attacks,
@@ -2031,8 +2102,8 @@ It's the first build to require Java 7.&lt;/p&gt;
 &lt;li&gt;Fix uploads stalling when using MAXIMUM physical security.&lt;/li&gt;
 &lt;li&gt;Fix lots of "setNativePriority(X) has failed!", which was caused by a serious thread priority problem. This might fix nodes unexpectedly losing peers.&lt;/li&gt;
 &lt;li&gt;Order alerts within a category by time: if you have lots of messages from darknet peers they will remain nicely sorted.&lt;/li&gt;
-&lt;li&gt;There is now a &lt;a href="https://github.com/freenet/fred/pull/157"&gt;caching layer&lt;/a&gt; which should significantly reduce I/O load.&lt;/li&gt;
-&lt;li&gt;Update WebOfTrust from build 15 to build 18. &lt;a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0016"&gt;Its&lt;/a&gt; &lt;a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0017"&gt;changelogs&lt;/a&gt; &lt;a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0018"&gt;are&lt;/a&gt; separate, but the changes reduce CPU load. Incremental score recomputation requires roughly 3 percent of the time of full recomputation, and queuing trust lists to disk lowers thread usage.&lt;/li&gt;
+&lt;li&gt;There is now a &lt;a href="https://github.com/hyphanet/fred/pull/157"&gt;caching layer&lt;/a&gt; which should significantly reduce I/O load.&lt;/li&gt;
+&lt;li&gt;Update WebOfTrust from build 15 to build 18. &lt;a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0016"&gt;Its&lt;/a&gt; &lt;a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0017"&gt;changelogs&lt;/a&gt; &lt;a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0018"&gt;are&lt;/a&gt; separate, but the changes reduce CPU load. Incremental score recomputation requires roughly 3 percent of the time of full recomputation, and queuing trust lists to disk lowers thread usage.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Translations:&lt;/p&gt;
 &lt;ul&gt;
@@ -2044,7 +2115,7 @@ It's the first build to require Java 7.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Remove Gantros Index from the default bookmark list because it stopped updating.&lt;/li&gt;
 &lt;li&gt;Remove Linkageddon from the default bookmark list because it stopped updating.&lt;/li&gt;
-&lt;li&gt;New version of UPnP to fix some instability and compatibility problems. Thanks to 007pig we have a &lt;a href="https://github.com/freenet/plugin-UPnP2"&gt;new UPnP plugin&lt;/a&gt; in development which supports UPnP2, but it is not yet included.&lt;/li&gt;
+&lt;li&gt;New version of UPnP to fix some instability and compatibility problems. Thanks to 007pig we have a &lt;a href="https://github.com/hyphanet/plugin-UPnP2"&gt;new UPnP plugin&lt;/a&gt; in development which supports UPnP2, but it is not yet included.&lt;/li&gt;
 &lt;li&gt;New version of KeyUtils.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;WebOfTrust now has an updatable testing version built and maintained by xor. To use it, unload WebOfTrust, then load "WebOfTrust Testing Versions" on the Plugins page. Versions built by xor will not work with Java 6.&lt;/p&gt;
@@ -2070,32 +2141,32 @@ Build 1471 will be the last to support Java 6.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;For more information and how to help test see the &lt;a href="https://emu.freenetproject.org/pipermail/devl/2016-January/038771.html"&gt;developer mailing list&lt;/a&gt;.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>"Weekend of Code" hackathon results</title><link href="https://www.hyphanet.org/ru/weekend-of-code-hackathon-results.html" rel="alternate"></link><published>2015-12-20T00:00:00+01:00</published><updated>2015-12-20T00:00:00+01:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2015-12-20:/ru/weekend-of-code-hackathon-results.html</id><summary type="html">&lt;p&gt;During the hackathon we got some changes done:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/438"&gt;Fix uploads stalling when using MAXIMUM physical security.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/435"&gt;Fix lots of "setNativePriority(X) has failed!"&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/426"&gt;Fix Bokmål localization loading.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/437"&gt;Fix JVM version string parsing.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/421"&gt;Fix and add test for broken localization substitution token pairs.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/433"&gt;Remove Gantros Index&lt;/a&gt; because it stopped updating.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/433"&gt;Remove …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;During the hackathon we got some changes done:&lt;/p&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/438"&gt;Fix uploads stalling when using MAXIMUM physical security.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/435"&gt;Fix lots of "setNativePriority(X) has failed!"&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/426"&gt;Fix Bokmål localization loading.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/437"&gt;Fix JVM version string parsing.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/421"&gt;Fix and add test for broken localization substitution token pairs.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/433"&gt;Remove Gantros Index&lt;/a&gt; because it stopped updating.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/433"&gt;Remove …&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;During the hackathon we got some changes done:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/438"&gt;Fix uploads stalling when using MAXIMUM physical security.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/435"&gt;Fix lots of "setNativePriority(X) has failed!"&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/426"&gt;Fix Bokmål localization loading.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/437"&gt;Fix JVM version string parsing.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/421"&gt;Fix and add test for broken localization substitution token pairs.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/433"&gt;Remove Gantros Index&lt;/a&gt; because it stopped updating.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/433"&gt;Remove Linkageddon&lt;/a&gt; because it stopped updating.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/439"&gt;Remove deprecated negtype crypto.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/freenet/fred/pull/418"&gt;Order alerts by date.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/438"&gt;Fix uploads stalling when using MAXIMUM physical security.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/435"&gt;Fix lots of "setNativePriority(X) has failed!"&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/426"&gt;Fix Bokmål localization loading.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/437"&gt;Fix JVM version string parsing.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/421"&gt;Fix and add test for broken localization substitution token pairs.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/433"&gt;Remove Gantros Index&lt;/a&gt; because it stopped updating.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/433"&gt;Remove Linkageddon&lt;/a&gt; because it stopped updating.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/439"&gt;Remove deprecated negtype crypto.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyphanet/fred/pull/418"&gt;Order alerts by date.&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/Dr-Tensor/plugin-Freemail/tree/master"&gt;Progress toward Freemail "to" field autocomplete.&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Progress toward changing the language setting in Winterface.&lt;/li&gt;
-&lt;li&gt;Progress toward building and verifying dependencies for &lt;a href="https://github.com/freenet/fred/tree/gradle"&gt;Fred&lt;/a&gt; and &lt;a href="https://github.com/ademan/winterface/tree/gradle-witness-1"&gt;Winterface&lt;/a&gt; using &lt;a href="https://gradle.org/"&gt;Gradle&lt;/a&gt; and &lt;a href="https://github.com/WhisperSystems/gradle-witness"&gt;gradle-witness&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Progress toward building and verifying dependencies for &lt;a href="https://github.com/hyphanet/fred/tree/gradle"&gt;Fred&lt;/a&gt; and &lt;a href="https://github.com/ademan/winterface/tree/gradle-witness-1"&gt;Winterface&lt;/a&gt; using &lt;a href="https://gradle.org/"&gt;Gradle&lt;/a&gt; and &lt;a href="https://github.com/WhisperSystems/gradle-witness"&gt;gradle-witness&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If we're able to get final changes ready build 1471-pre3 will be released the weekend of January 2nd.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Appeal for donations</title><link href="https://www.hyphanet.org/ru/appeal-for-donations.html" rel="alternate"></link><published>2015-12-12T00:00:00+01:00</published><updated>2015-12-12T00:00:00+01:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2015-12-12:/ru/appeal-for-donations.html</id><summary type="html">&lt;p&gt;Freenet is a platform for censorship-resistant communication and publishing. For the past 15 years the project has built tools to fight for freedom of speech and information.
 Our software provides a decentralized peer-to-peer network designed to hide who publishes or accesses potentially controversial information - or even that it exists - especially …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet is a platform for censorship-resistant communication and publishing. For the past 15 years the project has built tools to fight for freedom of speech and information.
 Our software provides a decentralized peer-to-peer network designed to hide who publishes or accesses potentially controversial information - or even that it exists - especially useful for those living in oppressive political regimes.&lt;/p&gt;
 &lt;p&gt;While development is primarily driven by volunteers, the project has also employed paid developers to provide more-focused work.
-Over the past 2 years, the project's paid developer has made &lt;a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0018"&gt;great progress&lt;/a&gt; improving “Web of Trust” functionality to combat spam, which is a central problem in any anonymous system.
+Over the past 2 years, the project's paid developer has made &lt;a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0018"&gt;great progress&lt;/a&gt; improving “Web of Trust” functionality to combat spam, which is a central problem in any anonymous system.
 Unfortunately, the Freenet Project no longer has enough money to retain his services, so he is now a volunteer.
 This greatly reduces his capacity to continue this important work.&lt;/p&gt;
 &lt;p&gt;We are extremely excited for the future of Freenet and the &lt;a href="https://wiki.freenetproject.org/Projects"&gt;projects built on top of it&lt;/a&gt;.
@@ -2104,10 +2175,10 @@ There is so much more work to do, and full-time developers greatly benefit the p
 &lt;p&gt;&lt;a href="donate.html"&gt;Donate today.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Thank you,&lt;/p&gt;
 &lt;p&gt;Freenet Project volunteers&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>New OS X installer and tray app</title><link href="https://www.hyphanet.org/ru/new-os-x-installer-and-tray-app.html" rel="alternate"></link><published>2015-12-12T00:00:00+01:00</published><updated>2015-12-12T00:00:00+01:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2015-12-12:/ru/new-os-x-installer-and-tray-app.html</id><summary type="html">&lt;p&gt;The &lt;a href="download.html"&gt;Freenet installer&lt;/a&gt; for OS X is now a native application. It should fix several major installation problems OS X users have encountered in the past.&lt;/p&gt;
-&lt;p&gt;It also includes an updated &lt;a href="https://github.com/freenet/mactray#freenettray"&gt;tray application&lt;/a&gt; with bugfixes and new features.&lt;/p&gt;
-&lt;p&gt;All Freenet users on OS X are encouraged to &lt;a href="https://github.com/freenet/mactray/releases"&gt;download&lt;/a&gt; the new …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a href="download.html"&gt;Freenet installer&lt;/a&gt; for OS X is now a native application. It should fix several major installation problems OS X users have encountered in the past.&lt;/p&gt;
-&lt;p&gt;It also includes an updated &lt;a href="https://github.com/freenet/mactray#freenettray"&gt;tray application&lt;/a&gt; with bugfixes and new features.&lt;/p&gt;
-&lt;p&gt;All Freenet users on OS X are encouraged to &lt;a href="https://github.com/freenet/mactray/releases"&gt;download&lt;/a&gt; the new tray application.&lt;/p&gt;
+&lt;p&gt;It also includes an updated &lt;a href="https://github.com/hyphanet/mactray#freenettray"&gt;tray application&lt;/a&gt; with bugfixes and new features.&lt;/p&gt;
+&lt;p&gt;All Freenet users on OS X are encouraged to &lt;a href="https://github.com/hyphanet/mactray/releases"&gt;download&lt;/a&gt; the new …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a href="download.html"&gt;Freenet installer&lt;/a&gt; for OS X is now a native application. It should fix several major installation problems OS X users have encountered in the past.&lt;/p&gt;
+&lt;p&gt;It also includes an updated &lt;a href="https://github.com/hyphanet/mactray#freenettray"&gt;tray application&lt;/a&gt; with bugfixes and new features.&lt;/p&gt;
+&lt;p&gt;All Freenet users on OS X are encouraged to &lt;a href="https://github.com/hyphanet/mactray/releases"&gt;download&lt;/a&gt; the new tray application.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="" src="/assets/img/mactray/osx_installer_step2_transparent.png" /&gt;&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>"Weekend of Code" hackathon announcement</title><link href="https://www.hyphanet.org/ru/weekend-of-code-hackathon-announcement.html" rel="alternate"></link><published>2015-11-20T00:00:00+01:00</published><updated>2015-11-20T00:00:00+01:00</updated><author><name>Freenet Contributors</name></author><id>tag:www.hyphanet.org,2015-11-20:/ru/weekend-of-code-hackathon-announcement.html</id><summary type="html">&lt;h2 id="who"&gt;Who?&lt;/h2&gt;
 &lt;p&gt;We welcome developers of all skill levels, designers, translators, and users.&lt;/p&gt;
 &lt;h2 id="what"&gt;What?&lt;/h2&gt;

@@ -87,7 +87,7 @@ positive probability decreasing with the number of requests received
 from the node.  This would be true if whether the HTL is
 decremented is decided per request, which has historically been the
 case in the early days of Freenet.  The vulnerability they claim to
-exploit was however addressed in 2008 (last touched in <a href="https://github.com/freenet/fred/commit/4aaa08f11656af1dd857e45612763c9bd2d89fc2">this
+exploit was however addressed in 2008 (last touched in <a href="https://github.com/hyphanet/fred/commit/4aaa08f11656af1dd857e45612763c9bd2d89fc2">this
 commit</a>).  Whether the HTL is decremented is since
 decided per connection, so any probability they claim using the
 aforementioned method is false.</p>
@@ -115,7 +115,7 @@ originating at the node itself, but with significant cost.</p>
 will not allow finding out with the described method whether HTL 18 requests came from the
 node itself or from the peers connected over
 friend-to-friend connections.</p>
-<p>For details, see <a href="https://github.com/freenet/fred/blob/next/src/freenet/node/PeerNode.java#L1603">the code</a>.</p>
+<p>For details, see <a href="https://github.com/hyphanet/fred/blob/next/src/freenet/node/PeerNode.java#L1603">the code</a>.</p>
 <p>This does not make it impossible to track Freenet users who use only
 Opennet mode (connecting to strangers), since a network where nodes
 connect to strangers is inherently susceptible to Sybil attacks,

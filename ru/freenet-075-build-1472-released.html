@@ -34,7 +34,6 @@
           <a  href="https://www.hyphanet.org/ru/pages/about.html">О проекте</a>
           <a  href="https://www.hyphanet.org/ru/pages/volunteer.html">Стать волонтером</a>
           <a  href="https://www.hyphanet.org/ru/pages/documentation.html">Документация</a>
-          <a  href="https://www.hyphanet.org/ru/pages/download.html">Скачать</a>
           <a  href="https://www.hyphanet.org/ru/pages/help.html">Помощь</a>
         </nav><!-- /#menu -->
 
@@ -71,8 +70,8 @@
 <li>Fix uploads stalling when using MAXIMUM physical security.</li>
 <li>Fix lots of "setNativePriority(X) has failed!", which was caused by a serious thread priority problem. This might fix nodes unexpectedly losing peers.</li>
 <li>Order alerts within a category by time: if you have lots of messages from darknet peers they will remain nicely sorted.</li>
-<li>There is now a <a href="https://github.com/freenet/fred/pull/157">caching layer</a> which should significantly reduce I/O load.</li>
-<li>Update WebOfTrust from build 15 to build 18. <a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0016">Its</a> <a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0017">changelogs</a> <a href="https://github.com/freenet/plugin-WebOfTrust/releases/tag/build0018">are</a> separate, but the changes reduce CPU load. Incremental score recomputation requires roughly 3 percent of the time of full recomputation, and queuing trust lists to disk lowers thread usage.</li>
+<li>There is now a <a href="https://github.com/hyphanet/fred/pull/157">caching layer</a> which should significantly reduce I/O load.</li>
+<li>Update WebOfTrust from build 15 to build 18. <a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0016">Its</a> <a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0017">changelogs</a> <a href="https://github.com/hyphanet/plugin-WebOfTrust/releases/tag/build0018">are</a> separate, but the changes reduce CPU load. Incremental score recomputation requires roughly 3 percent of the time of full recomputation, and queuing trust lists to disk lowers thread usage.</li>
 </ul>
 <p>Translations:</p>
 <ul>
@@ -84,7 +83,7 @@
 <ul>
 <li>Remove Gantros Index from the default bookmark list because it stopped updating.</li>
 <li>Remove Linkageddon from the default bookmark list because it stopped updating.</li>
-<li>New version of UPnP to fix some instability and compatibility problems. Thanks to 007pig we have a <a href="https://github.com/freenet/plugin-UPnP2">new UPnP plugin</a> in development which supports UPnP2, but it is not yet included.</li>
+<li>New version of UPnP to fix some instability and compatibility problems. Thanks to 007pig we have a <a href="https://github.com/hyphanet/plugin-UPnP2">new UPnP plugin</a> in development which supports UPnP2, but it is not yet included.</li>
 <li>New version of KeyUtils.</li>
 </ul>
 <p>WebOfTrust now has an updatable testing version built and maintained by xor. To use it, unload WebOfTrust, then load "WebOfTrust Testing Versions" on the Plugins page. Versions built by xor will not work with Java 6.</p>
