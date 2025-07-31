@@ -1,76 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet - misc</title><link href="https://www.hyphanet.org/" rel="alternate"/><link href="https://www.hyphanet.org/feeds/misc.atom.xml" rel="self"/><id>https://www.hyphanet.org/</id><updated>2025-02-22T00:00:00+01:00</updated><entry><title>Freenet / Hyphanet build 1501: address performance regression and merged PRs</title><link href="https://www.hyphanet.org/freenet-hyphanet-build-1501-address-performance-regression-and-merged-prs.html" rel="alternate"/><published>2025-02-22T00:00:00+01:00</published><updated>2025-02-22T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-02-22:/freenet-hyphanet-build-1501-address-performance-regression-and-merged-prs.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1501 is now available.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The main purpose of this release is to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1501 is now available.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The main purpose of this release is to address a regression in backoff.&lt;/p&gt;
-&lt;p&gt;Build 1500 fixed the regression that caused very high CPU load in 1499, but the backoff was still far higher than with build 1498.&lt;/p&gt;
-&lt;div style="float: right; width: 30%; max-width: 300px;"&gt;&lt;img src="./theme/images/logo-large.png" width="100%" style="filter: invert(30%)"  /&gt;&lt;/div&gt;
-
-&lt;p&gt;The regression came from handling a bulk request with 10% probability if there is a realtime request.
-This was a fix for very fast nodes. Previously high rates of realtime requests could starve the bulk requests.
-But the change caused higher backoff, because the fraction of bulk requests and average delays for realtime requests increased.&lt;/p&gt;
-&lt;p&gt;In addition, a bugfix to slow request handling had caused nodes to actually back off (pause their requests) when bulk requests became too slow.
-This was erroneously ignored before.&lt;/p&gt;
-&lt;p&gt;Both changes together caused fluctuating backoff that also showed up in the fetchpull stats as doubled latency:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Request latency for 1MiB files tracked over time with averages for files uploaded the same day, files uploaded one day before, and files uploaded 32 days before" src="https://www.hyphanet.org/assets/img/2025-02-22-fetchpull-get-bulk.png" /&gt;&lt;/p&gt;
-&lt;p&gt;The fix is to reduce the probability to choose bulk instead of realtime to 2%
-and to remove an artificial minimum for the retransmission timeout.
-This should speed up request handling and reduce backoff.
-And reduced backoff increases the efficiency of routing.&lt;/p&gt;
-&lt;p&gt;We could track down the issue and test improvements mainly thanks to testing by max_iops. Thank you!&lt;/p&gt;
-&lt;p&gt;In addition to addressing the regression we merged safe improvements
-people had submitted in the meantime:&lt;/p&gt;
-&lt;p&gt;Code and performance improvements:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;avoid reflection and global synchronized in fileutils and use NIO for improved performance. Thanks to bertm!&lt;/li&gt;
-&lt;li&gt;use the java 8 datetime utils and remove the deprecated Calendar. Thanks to bertm!&lt;/li&gt;
-&lt;li&gt;only log errors for invalid recently failed values if those values are invalid in all supported versions.&lt;/li&gt;
-&lt;li&gt;split up parsing peers to be easier to understand&lt;/li&gt;
-&lt;li&gt;improve crypt tests that fail in Gradle on some Java versions but not in IntelliJ&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Freesite UI:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;enable using CSS properties border-block/inline-start/end-color/style/width, border-end/start-end/start-radius. Thanks to torusrxxx!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Bugfixes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;fix usk date hints: failed for a week spanning over two years. Thanks to bertm!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Thank you for using Hyphanet!&lt;/p&gt;
-&lt;div style="clear: both"&gt;&lt;/div&gt;
-
-&lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Join our core.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;If you want to help us get better, please chat with us in &lt;a href="https://web.libera.chat/?nick=Rabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And give us time to answer, we’re all volunteers and might not be in your timezone.&lt;/p&gt;
-&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/hyphanet/wiki/wiki/Projects"&gt;Freenet / Hyphanet Projects&lt;/a&gt; or just get &lt;a href="https://github.com/hyphanet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
-&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In addition to coding, spreading Hyphanet, joining the community, writing a decentralized website, and other ways to contribute within Hyphanet, you can join the awesome team of translators &lt;a href="https://explore.transifex.com/otf/freenet/"&gt;at transifex&lt;/a&gt;. They are the reason why we’re able to support several different languages, the often unseen heroes who make our work accessible to those who need it the most.&lt;/p&gt;
-&lt;h2 id="what-is-freenet-hyphanet"&gt;What is Freenet / Hyphanet?&lt;/h2&gt;
-&lt;p&gt;Hyphanet is the original Freenet,&lt;br /&gt;
-a peer-to-peer platform for&lt;br /&gt;
-censorship-resistant and privacy-respecting&lt;br /&gt;
-publishing and communication.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I worry about my child and the Internet all the time, even though
-she's too young to have logged on yet. Here's what I worry about. I
-worry that 10 or 15 years from now, she will come to me and say
-'Daddy, where were you when they took freedom of the press away from
-the Internet? --Mike Godwin, Electronic Frontier Foundation&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;em&gt;What about the name „Hyphanet“? See &lt;a href="https://www.hyphanet.org/freenet-renamed-to-hyphanet.html"&gt;Freenet renamed to Hyphanet&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;That Hyphanet can keep moving forward and help people worldwide to
-exercise their basic rights and freedoms is the work of amazing
-volunteers, both contributors and people running Hyphanet nodes.&lt;/p&gt;
-&lt;p&gt;Thank you for your contributions, and thank you for using Freenet / Hyphanet!&lt;/p&gt;
-&lt;p&gt;-- AB&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms.&lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="misc"/></entry><entry><title>Freenet / Hyphanet build 1502/1503: fix vulnerability and visibility, add animated webp, convenience, and optimization</title><link href="https://www.hyphanet.org/freenet-hyphanet-build-15021503-fix-vulnerability-and-visibility-add-animated-webp-convenience-and-optimization.html" rel="alternate"/><published>2025-02-22T00:00:00+01:00</published><updated>2025-02-22T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-02-22:/freenet-hyphanet-build-15021503-fix-vulnerability-and-visibility-add-animated-webp-convenience-and-optimization.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1503 is now available.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Hyphanet - misc</title><link href="https://www.hyphanet.org/" rel="alternate"/><link href="https://www.hyphanet.org/feeds/misc.atom.xml" rel="self"/><id>https://www.hyphanet.org/</id><updated>2025-07-06T00:00:00+02:00</updated><entry><title>Freenet / Hyphanet build 1502/1503: fix vulnerability and visibility, add animated webp, convenience, and optimization</title><link href="https://www.hyphanet.org/freenet-hyphanet-build-15021503-fix-vulnerability-and-visibility-add-animated-webp-convenience-and-optimization.html" rel="alternate"/><published>2025-07-06T00:00:00+02:00</published><updated>2025-07-06T00:00:00+02:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-07-06:/freenet-hyphanet-build-15021503-fix-vulnerability-and-visibility-add-animated-webp-convenience-and-optimization.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1503 is now available.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01503/FreenetInstaller-1503.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01503/new_installer_offline_1503.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -240,6 +169,77 @@ volunteers, both contributors and people running Hyphanet nodes.&lt;/p&gt;
 &lt;p&gt;-- AB&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01503/FreenetInstaller-1503.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01503/new_installer_offline_1503.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms.&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="misc"/></entry><entry><title>Freenet / Hyphanet build 1501: address performance regression and merged PRs</title><link href="https://www.hyphanet.org/freenet-hyphanet-build-1501-address-performance-regression-and-merged-prs.html" rel="alternate"/><published>2025-02-22T00:00:00+01:00</published><updated>2025-02-22T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-02-22:/freenet-hyphanet-build-1501-address-performance-regression-and-merged-prs.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1501 is now available.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The main purpose of this release is to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1501 is now available.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The main purpose of this release is to address a regression in backoff.&lt;/p&gt;
+&lt;p&gt;Build 1500 fixed the regression that caused very high CPU load in 1499, but the backoff was still far higher than with build 1498.&lt;/p&gt;
+&lt;div style="float: right; width: 30%; max-width: 300px;"&gt;&lt;img src="./theme/images/logo-large.png" width="100%" style="filter: invert(30%)"  /&gt;&lt;/div&gt;
+
+&lt;p&gt;The regression came from handling a bulk request with 10% probability if there is a realtime request.
+This was a fix for very fast nodes. Previously high rates of realtime requests could starve the bulk requests.
+But the change caused higher backoff, because the fraction of bulk requests and average delays for realtime requests increased.&lt;/p&gt;
+&lt;p&gt;In addition, a bugfix to slow request handling had caused nodes to actually back off (pause their requests) when bulk requests became too slow.
+This was erroneously ignored before.&lt;/p&gt;
+&lt;p&gt;Both changes together caused fluctuating backoff that also showed up in the fetchpull stats as doubled latency:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Request latency for 1MiB files tracked over time with averages for files uploaded the same day, files uploaded one day before, and files uploaded 32 days before" src="https://www.hyphanet.org/assets/img/2025-02-22-fetchpull-get-bulk.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The fix is to reduce the probability to choose bulk instead of realtime to 2%
+and to remove an artificial minimum for the retransmission timeout.
+This should speed up request handling and reduce backoff.
+And reduced backoff increases the efficiency of routing.&lt;/p&gt;
+&lt;p&gt;We could track down the issue and test improvements mainly thanks to testing by max_iops. Thank you!&lt;/p&gt;
+&lt;p&gt;In addition to addressing the regression we merged safe improvements
+people had submitted in the meantime:&lt;/p&gt;
+&lt;p&gt;Code and performance improvements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;avoid reflection and global synchronized in fileutils and use NIO for improved performance. Thanks to bertm!&lt;/li&gt;
+&lt;li&gt;use the java 8 datetime utils and remove the deprecated Calendar. Thanks to bertm!&lt;/li&gt;
+&lt;li&gt;only log errors for invalid recently failed values if those values are invalid in all supported versions.&lt;/li&gt;
+&lt;li&gt;split up parsing peers to be easier to understand&lt;/li&gt;
+&lt;li&gt;improve crypt tests that fail in Gradle on some Java versions but not in IntelliJ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Freesite UI:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;enable using CSS properties border-block/inline-start/end-color/style/width, border-end/start-end/start-radius. Thanks to torusrxxx!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Bugfixes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fix usk date hints: failed for a week spanning over two years. Thanks to bertm!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thank you for using Hyphanet!&lt;/p&gt;
+&lt;div style="clear: both"&gt;&lt;/div&gt;
+
+&lt;h2 id="contribute"&gt;Contribute&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Join our core.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you want to help us get better, please chat with us in &lt;a href="https://web.libera.chat/?nick=Rabbit|?#freenet" id="chatlink" class="btn button-custom btn-custom-two"&gt;#freenet @ irc.libera.chat&lt;/a&gt;. And give us time to answer, we’re all volunteers and might not be in your timezone.&lt;/p&gt;
+&lt;p&gt;To get into development right-away, have a look at one of the &lt;a href="https://github.com/hyphanet/wiki/wiki/Projects"&gt;Freenet / Hyphanet Projects&lt;/a&gt; or just get &lt;a href="https://github.com/hyphanet/fred"&gt;fred&lt;/a&gt; and fix something that annoys you.&lt;/p&gt;
+&lt;p&gt;And to take on something that makes a big difference, have a look at the &lt;a href="https://github.com/hyphanet/wiki/wiki/High-Impact-tasks"&gt;high-impact tasks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In addition to coding, spreading Hyphanet, joining the community, writing a decentralized website, and other ways to contribute within Hyphanet, you can join the awesome team of translators &lt;a href="https://explore.transifex.com/otf/freenet/"&gt;at transifex&lt;/a&gt;. They are the reason why we’re able to support several different languages, the often unseen heroes who make our work accessible to those who need it the most.&lt;/p&gt;
+&lt;h2 id="what-is-freenet-hyphanet"&gt;What is Freenet / Hyphanet?&lt;/h2&gt;
+&lt;p&gt;Hyphanet is the original Freenet,&lt;br /&gt;
+a peer-to-peer platform for&lt;br /&gt;
+censorship-resistant and privacy-respecting&lt;br /&gt;
+publishing and communication.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I worry about my child and the Internet all the time, even though
+she's too young to have logged on yet. Here's what I worry about. I
+worry that 10 or 15 years from now, she will come to me and say
+'Daddy, where were you when they took freedom of the press away from
+the Internet? --Mike Godwin, Electronic Frontier Foundation&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;What about the name „Hyphanet“? See &lt;a href="https://www.hyphanet.org/freenet-renamed-to-hyphanet.html"&gt;Freenet renamed to Hyphanet&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That Hyphanet can keep moving forward and help people worldwide to
+exercise their basic rights and freedoms is the work of amazing
+volunteers, both contributors and people running Hyphanet nodes.&lt;/p&gt;
+&lt;p&gt;Thank you for your contributions, and thank you for using Freenet / Hyphanet!&lt;/p&gt;
+&lt;p&gt;-- AB&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/FreenetInstaller-1501.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01501/new_installer_offline_1501.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms.&lt;/p&gt;
 &lt;/blockquote&gt;</content><category term="misc"/></entry><entry><title>Freenet / Hyphanet build 1500: hotfixes and polish</title><link href="https://www.hyphanet.org/freenet-hyphanet-build-1500-hotfixes-and-polish.html" rel="alternate"/><published>2025-01-13T00:00:00+01:00</published><updated>2025-01-13T00:00:00+01:00</updated><author><name>Arne Babenhauserheide</name></author><id>tag:www.hyphanet.org,2025-01-13:/freenet-hyphanet-build-1500-hotfixes-and-polish.html</id><summary type="html">&lt;p&gt;Freenet / Hyphanet 0.7.5 build 1500 is now available.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Install Freenet / Hyphanet&lt;/strong&gt; for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01500/FreenetInstaller-1500.exe"&gt;Windows&lt;/a&gt;&lt;/strong&gt;, for &lt;strong&gt;&lt;a href="https://www.draketo.de/dateien/freenet/build01500/new_installer_offline_1500.jar"&gt;GNU/Linux, macOS and other *nixes&lt;/a&gt;&lt;/strong&gt;, or for &lt;strong&gt;&lt;a href="https://freenet-mobile.github.io/app/"&gt;Android&lt;/a&gt;&lt;/strong&gt;. See the &lt;a href="pages/download.html"&gt;download page&lt;/a&gt; for more information and other platforms (Apple Silicon needs library updates to work).&lt;/p&gt;
